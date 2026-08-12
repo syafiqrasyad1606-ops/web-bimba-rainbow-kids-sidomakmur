@@ -175,7 +175,7 @@ const galeri = [
   },
 ]
 
-const WA_NUMBER = '62'
+const WA_NUMBER = '6289515460401'
 
 
 /* =========================================================
@@ -531,7 +531,7 @@ function TopBar() {
           target="_blank"
           rel="noreferrer"
         >
-          +62
+          +6289515460401
         </a>
       </div>
     </div>
@@ -2011,7 +2011,7 @@ function Kontak() {
               <PhoneIcon />
             </span>
 
-            08
+            0895-1546-0401
           </li>
 
           <li>
