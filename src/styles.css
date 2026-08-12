@@ -451,6 +451,41 @@ button {
   max-width: 640px;
 }
 
+.hero__content--intro .eyebrow {
+  animation: hero-fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.1s;
+}
+
+.hero__content--intro h1 {
+  animation: hero-fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.25s;
+}
+
+.hero__content--intro .hero__sub {
+  animation: hero-fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.45s;
+}
+
+@keyframes hero-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__content--intro .eyebrow,
+  .hero__content--intro h1,
+  .hero__content--intro .hero__sub {
+    animation: none;
+  }
+}
+
 .hero__content h1 {
   font-size: clamp(1.9rem, 4.6vw, 3.2rem);
   color: #fff;
@@ -1530,14 +1565,8 @@ button {
     bottom: 14px;
   }
 
-  .hero__deco--star1,
-  .hero__deco--balon1 {
-    width: 46px;
-  }
-
-  .hero__deco--star2,
-  .hero__deco--balon2 {
-    width: 40px;
+  .hero__deco {
+    display: none;
   }
 
   .kontak__list {
