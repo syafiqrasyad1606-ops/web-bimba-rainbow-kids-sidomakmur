@@ -7,6 +7,7 @@ import bintang2 from './assets/bintang_2.png'
 
 import fotoBareng from './assets/foto_bareng.jpg'
 import fotoCampuran from './assets/foto_campuran.jpg'
+
 import iconGroup from './assets/icon_group.png'
 import iconBintang from './assets/icon_bintang.png'
 import iconUang from './assets/icon_uang.png'
@@ -22,6 +23,7 @@ import fotowarnain3 from './assets/gambar.jpeg'
 import fotowarnain4 from './assets/warnai.jpeg'
 
 import fotosekolah from './assets/sekolah.jpeg'
+
 
 /* =========================================================
    DATA
@@ -138,11 +140,9 @@ const testimoni = [
   },
 ]
 
-/*
-=========================================================
-GALERI
-=========================================================
-*/
+/* =========================================================
+   GALERI
+========================================================= */
 
 const galeri = [
   {
@@ -177,6 +177,7 @@ const galeri = [
 
 const WA_NUMBER = '62'
 
+
 /* =========================================================
    RAINBOW TEXT
 ========================================================= */
@@ -206,6 +207,7 @@ function RainbowText({ text }) {
     </>
   )
 }
+
 
 /* =========================================================
    ICONS
@@ -238,6 +240,7 @@ function PinIcon() {
   )
 }
 
+
 function PhoneIcon() {
   return (
     <svg
@@ -256,6 +259,7 @@ function PhoneIcon() {
     </svg>
   )
 }
+
 
 function ClockIcon() {
   return (
@@ -285,6 +289,7 @@ function ClockIcon() {
   )
 }
 
+
 function WhatsAppIcon({ size = 26 }) {
   return (
     <svg
@@ -306,6 +311,7 @@ function WhatsAppIcon({ size = 26 }) {
     </svg>
   )
 }
+
 
 function PencilIcon() {
   return (
@@ -333,6 +339,7 @@ function PencilIcon() {
   )
 }
 
+
 function BookIcon() {
   return (
     <svg
@@ -359,6 +366,7 @@ function BookIcon() {
   )
 }
 
+
 function SparkIcon({ size = 22 }) {
   return (
     <svg
@@ -378,8 +386,9 @@ function SparkIcon({ size = 22 }) {
   )
 }
 
+
 /* =========================================================
-   REVEAL
+   REVEAL ANIMATION
 ========================================================= */
 
 function useReveal() {
@@ -410,6 +419,7 @@ function useReveal() {
   return ref
 }
 
+
 function Reveal({
   children,
   className = '',
@@ -430,6 +440,7 @@ function Reveal({
   )
 }
 
+
 /* =========================================================
    WHATSAPP FLOAT
 ========================================================= */
@@ -447,6 +458,7 @@ function WhatsAppFloat() {
     </a>
   )
 }
+
 
 /* =========================================================
    BACK TO TOP
@@ -505,6 +517,7 @@ function BackToTop() {
   )
 }
 
+
 /* =========================================================
    TOP BAR
 ========================================================= */
@@ -524,6 +537,7 @@ function TopBar() {
     </div>
   )
 }
+
 
 /* =========================================================
    NAVBAR
@@ -558,13 +572,16 @@ function NavBar() {
     )
 
     const sections = ids
-      .map((id) => document.getElementById(id))
+      .map((id) =>
+        document.getElementById(id)
+      )
       .filter(Boolean)
 
     if (!sections.length) return
 
     function onScroll() {
-      const anchor = window.scrollY + 160
+      const anchor =
+        window.scrollY + 160
 
       let current = null
 
@@ -575,17 +592,26 @@ function NavBar() {
       }
 
       setActiveHref(
-        current ? `#${current}` : '#top'
+        current
+          ? `#${current}`
+          : '#top'
       )
     }
 
     onScroll()
 
-    window.addEventListener('scroll', onScroll, {
-      passive: true,
-    })
+    window.addEventListener(
+      'scroll',
+      onScroll,
+      {
+        passive: true,
+      }
+    )
 
-    window.addEventListener('resize', onScroll)
+    window.addEventListener(
+      'resize',
+      onScroll
+    )
 
     return () => {
       window.removeEventListener(
@@ -602,8 +628,11 @@ function NavBar() {
 
   useEffect(() => {
     function updateIndicator() {
-      const container = linksRef.current
-      const el = itemRefs.current[activeHref]
+      const container =
+        linksRef.current
+
+      const el =
+        itemRefs.current[activeHref]
 
       if (!container || !el) {
         setIndicator((prev) => ({
@@ -622,8 +651,11 @@ function NavBar() {
 
       setIndicator({
         left:
-          elBox.left - containerBox.left,
+          elBox.left -
+          containerBox.left,
+
         width: elBox.width,
+
         opacity: 1,
       })
     }
@@ -664,7 +696,9 @@ function NavBar() {
 
           <span className="nav__brandtext">
             BIMBA Rainbow Kids
-            <small>Sidomakmur</small>
+            <small>
+              Sidomakmur
+            </small>
           </span>
         </a>
 
@@ -677,35 +711,47 @@ function NavBar() {
           <span
             className="nav__indicator"
             style={{
-              transform: `translateX(${indicator.left}px)`,
-              width: indicator.width,
-              opacity: indicator.opacity,
+              transform:
+                `translateX(${indicator.left}px)`,
+
+              width:
+                indicator.width,
+
+              opacity:
+                indicator.opacity,
             }}
             aria-hidden="true"
           />
 
-          {links.map(([href, label]) => (
-            <a
-              key={href}
-              href={href}
-              ref={(el) => {
-                itemRefs.current[href] = el
-              }}
-              className={
-                activeHref === href
-                  ? 'is-active'
-                  : ''
-              }
-              onClick={() => setOpen(false)}
-            >
-              {label}
-            </a>
-          ))}
+          {links.map(
+            ([href, label]) => (
+              <a
+                key={href}
+                href={href}
+                ref={(el) => {
+                  itemRefs.current[href] =
+                    el
+                }}
+                className={
+                  activeHref === href
+                    ? 'is-active'
+                    : ''
+                }
+                onClick={() =>
+                  setOpen(false)
+                }
+              >
+                {label}
+              </a>
+            )
+          )}
         </nav>
 
         <button
           className="nav__burger"
-          onClick={() => setOpen(!open)}
+          onClick={() =>
+            setOpen(!open)
+          }
           aria-label="Buka menu"
         >
           <span />
@@ -717,6 +763,7 @@ function NavBar() {
   )
 }
 
+
 /* =========================================================
    HERO
 ========================================================= */
@@ -727,7 +774,8 @@ function Hero() {
       id="top"
       className="hero"
       style={{
-        backgroundImage: `url(${fotoKidsRainbow})`,
+        backgroundImage:
+          `url(${fotoKidsRainbow})`,
       }}
     >
       <div
@@ -773,8 +821,9 @@ function Hero() {
         </h1>
 
         <p className="hero__sub">
-          Rainbow Kids membimbing si kecil belajar
-          sambil bermain — lengkap dengan program{' '}
+          Rainbow Kids membimbing si kecil
+          belajar sambil bermain — lengkap
+          dengan program{' '}
           <strong>
             Tahfidz Qur&apos;an setiap hari Jumat
           </strong>{' '}
@@ -784,6 +833,7 @@ function Hero() {
     </section>
   )
 }
+
 
 /* =========================================================
    TENTANG
@@ -818,15 +868,17 @@ function Tentang() {
             />
 
             <p className="tentang__desc">
-              Rainbow Kids adalah BIMBA (Bimbingan
-              Belajar Anak) di Sidomakmur yang fokus
-              pada penumbuhan minat belajar anak usia
-              4–6 tahun, bukan sekadar bisa baca tulis.
-              Kami percaya anak yang mencintai belajar
-              sejak dini akan tumbuh menjadi pribadi
-              yang cerdas, percaya diri, mandiri, dan
-              dekat dengan Al-Qur&apos;an lewat Tahfidz
-              mingguan.
+              Rainbow Kids adalah BIMBA
+              (Bimbingan Belajar Anak) di
+              Sidomakmur yang fokus pada
+              penumbuhan minat belajar anak
+              usia 4–6 tahun, bukan sekadar
+              bisa baca tulis. Kami percaya
+              anak yang mencintai belajar
+              sejak dini akan tumbuh menjadi
+              pribadi yang cerdas, percaya diri,
+              mandiri, dan dekat dengan Al-Qur&apos;an
+              lewat Tahfidz mingguan.
             </p>
           </div>
         </Reveal>
@@ -840,9 +892,10 @@ function Tentang() {
             </span>
 
             <p>
-              Menjadi tempat belajar pilihan yang
-              membentuk anak cerdas, mandiri, dan
-              berakhlak mulia sejak usia dini.
+              Menjadi tempat belajar pilihan
+              yang membentuk anak cerdas,
+              mandiri, dan berakhlak mulia
+              sejak usia dini.
             </p>
           </div>
         </Reveal>
@@ -854,10 +907,11 @@ function Tentang() {
             </span>
 
             <p>
-              Menghadirkan pembelajaran aktif berbasis
-              bermain, membiasakan nilai-nilai Islami
-              lewat Tahfidz mingguan, dan menjalin
-              kedekatan erat dengan orang tua.
+              Menghadirkan pembelajaran aktif
+              berbasis bermain, membiasakan
+              nilai-nilai Islami lewat Tahfidz
+              mingguan, dan menjalin kedekatan
+              erat dengan orang tua.
             </p>
           </div>
         </Reveal>
@@ -865,6 +919,7 @@ function Tentang() {
     </section>
   )
 }
+
 
 /* =========================================================
    KEUNGGULAN
@@ -889,8 +944,8 @@ function Keunggulan() {
         </h2>
 
         <p className="keunggulan__subtitle">
-          Belajar seru, tumbuh bahagia, masa depan
-          cerah!
+          Belajar seru, tumbuh bahagia,
+          masa depan cerah!
         </p>
       </Reveal>
 
@@ -902,7 +957,9 @@ function Keunggulan() {
           >
             <div
               className={`keunggulan-card ${
-                k.judul.includes('Tahfidz')
+                k.judul.includes(
+                  'Tahfidz'
+                )
                   ? 'is-highlight'
                   : ''
               }`}
@@ -982,6 +1039,7 @@ function Keunggulan() {
   )
 }
 
+
 /* =========================================================
    PROGRAM
 ========================================================= */
@@ -1031,8 +1089,9 @@ function Program() {
             </h2>
 
             <p className="program__intro">
-              Program lengkap untuk mendukung tumbuh
-              kembang anak dengan cara belajar yang
+              Program lengkap untuk
+              mendukung tumbuh kembang
+              anak dengan cara belajar yang
               menyenangkan.{' '}
               <img
                 src={iconHeart}
@@ -1055,9 +1114,13 @@ function Program() {
                   </span>
 
                   <span className="program-item__text">
-                    <strong>{p.judul}</strong>
+                    <strong>
+                      {p.judul}
+                    </strong>
 
-                    <span>{p.desc}</span>
+                    <span>
+                      {p.desc}
+                    </span>
                   </span>
                 </div>
               ))}
@@ -1089,14 +1152,15 @@ function Program() {
 
               <div>
                 <strong>
-                  Belajar dengan Hati, Tumbuh Sepanjang
-                  Hati
+                  Belajar dengan Hati,
+                  Tumbuh Sepanjang Hati
                 </strong>
 
                 <p>
-                  Kami percaya setiap anak unik dan
-                  berharga. Di Rainbow Kids, mereka
-                  belajar, bermain, dan berkembang
+                  Kami percaya setiap anak
+                  unik dan berharga. Di
+                  Rainbow Kids, mereka belajar,
+                  bermain, dan berkembang
                   dengan bahagia.
                 </p>
               </div>
@@ -1108,9 +1172,30 @@ function Program() {
   )
 }
 
+
 /* =========================================================
    GALERI CAROUSEL
-   FIX MOBILE LANDSCAPE
+   =========================================================
+   
+   PERUBAHAN UTAMA:
+
+   1. Mobile:
+      - 1 gambar besar
+      - lebar hampir penuh layar
+      - aspect ratio landscape
+
+   2. Tablet:
+      - 2 gambar
+
+   3. Desktop:
+      - 4 gambar
+
+   4. Tombol diposisikan absolute
+      sehingga tidak mengurangi ukuran gambar.
+
+   5. Caption DIPINDAHKAN KE BAWAH GAMBAR
+      supaya tidak menutupi foto.
+
 ========================================================= */
 
 function Galeri() {
@@ -1119,11 +1204,23 @@ function Galeri() {
   const [visible, setVisible] =
     useState(4)
 
+  const [screenWidth, setScreenWidth] =
+    useState(
+      typeof window !== 'undefined'
+        ? window.innerWidth
+        : 1200
+    )
+
   useEffect(() => {
     function updateVisible() {
-      if (window.innerWidth <= 600) {
+      const width =
+        window.innerWidth
+
+      setScreenWidth(width)
+
+      if (width <= 600) {
         setVisible(1)
-      } else if (window.innerWidth <= 900) {
+      } else if (width <= 900) {
         setVisible(2)
       } else {
         setVisible(4)
@@ -1172,44 +1269,73 @@ function Galeri() {
     })
   }
 
-  const slideWidth = 100 / visible
+  const isMobile =
+    screenWidth <= 600
+
+  const isTablet =
+    screenWidth > 600 &&
+    screenWidth <= 900
 
   /*
-  =======================================================
-  INI BAGIAN YANG DIPERBAIKI
-  =======================================================
+    Lebar carousel:
 
-  Sebelumnya:
+    Mobile:
+    hampir full layar
 
-  height: '205px'
-
-  Masalah:
-  Saat mobile lebar card mengecil tetapi tingginya
-  tetap 205px sehingga rasio gambar berubah.
-
-  Sekarang kita pakai:
-
-  aspectRatio: '16 / 9'
-
-  Jadi:
-  - Desktop -> landscape
-  - Tablet  -> landscape
-  - Mobile  -> tetap landscape
-  =======================================================
+    Tablet/Desktop:
+    tetap dibatasi agar terlihat
+    profesional.
   */
+
+  const carouselWidth = isMobile
+    ? 'calc(100% - 24px)'
+    : isTablet
+      ? 'calc(100% - 70px)'
+      : 'min(1150px, calc(100% - 70px))'
+
+  /*
+    Jarak antar slide.
+  */
+
+  const slideWidth =
+    100 / visible
+
+  /*
+    Tinggi gambar.
+
+    Mobile dibuat besar karena sebelumnya
+    hanya 205px dan terlihat terlalu kecil.
+
+    Kita gunakan aspect ratio landscape.
+  */
+
+  const imageAspectRatio =
+    isMobile
+      ? '16 / 10'
+      : isTablet
+        ? '16 / 10'
+        : '16 / 9'
 
   const carouselStyles = {
     wrapper: {
-      width: 'min(1150px, calc(100% - 70px))',
-      margin: '42px auto 0',
-      display: 'flex',
-      alignItems: 'center',
-      gap: '14px',
+      width: carouselWidth,
+      margin:
+        isMobile
+          ? '38px auto 0'
+          : '42px auto 0',
+
+      position: 'relative',
+
+      padding:
+        isMobile
+          ? '0'
+          : '0 42px',
+
+      boxSizing: 'border-box',
     },
 
     viewport: {
-      flex: 1,
-      minWidth: 0,
+      width: '100%',
       overflow: 'hidden',
     },
 
@@ -1217,42 +1343,62 @@ function Galeri() {
       display: 'flex',
       width: '100%',
 
-      transform: `translateX(-${
-        idx * slideWidth
-      }%)`,
+      transform:
+        `translateX(-${idx * slideWidth}%)`,
 
       transition:
         'transform 550ms cubic-bezier(0.22, 1, 0.36, 1)',
     },
 
     slide: {
-      flex: `0 0 ${slideWidth}%`,
-      width: `${slideWidth}%`,
-      boxSizing: 'border-box',
-      padding: '0 7px',
+      flex:
+        `0 0 ${slideWidth}%`,
+
+      width:
+        `${slideWidth}%`,
+
+      boxSizing:
+        'border-box',
+
+      padding:
+        isMobile
+          ? '0 2px'
+          : '0 7px',
     },
 
-    /*
-    ================================================
-    FIX UTAMA
-    ================================================
-    */
-
     item: {
+      width: '100%',
       position: 'relative',
+    },
+
+    imageBox: {
       width: '100%',
 
       /*
-      Jangan pakai height fixed lagi.
+        Inilah bagian penting.
+
+        Foto tidak lagi 205px.
+        Sekarang mengikuti ratio
+        landscape.
       */
-      aspectRatio: '16 / 9',
+
+      aspectRatio:
+        imageAspectRatio,
 
       overflow: 'hidden',
-      borderRadius: '18px',
-      background: '#eee',
+
+      borderRadius:
+        isMobile
+          ? '22px'
+          : '18px',
+
+      background:
+        '#f1f1f1',
+
       boxShadow:
-        '0 12px 30px rgba(40, 30, 80, 0.10)',
-      cursor: 'pointer',
+        '0 14px 35px rgba(40, 30, 80, 0.12)',
+
+      position: 'relative',
     },
 
     img: {
@@ -1261,65 +1407,165 @@ function Galeri() {
       display: 'block',
 
       /*
-      Foto tetap mengisi frame,
-      tetapi frame sekarang sudah landscape.
+        contain supaya foto landscape
+        tidak dipotong secara paksa.
       */
-      objectFit: 'cover',
+
+      objectFit: 'contain',
+
+      background:
+        '#eeeeee',
 
       transition:
         'transform .35s ease',
     },
 
-    overlay: {
-      position: 'absolute',
-      inset: 0,
-
-      background:
-        'linear-gradient(to top, rgba(20, 30, 70, .78), rgba(20, 30, 70, .03) 68%)',
-
-      pointerEvents: 'none',
-    },
-
     caption: {
-      position: 'absolute',
-      left: '14px',
-      right: '14px',
-      bottom: '13px',
-      color: '#fff',
-      fontSize: '13px',
+      marginTop:
+        isMobile
+          ? '12px'
+          : '10px',
+
+      padding:
+        isMobile
+          ? '0 8px'
+          : '0 6px',
+
+      color:
+        '#25326b',
+
+      fontSize:
+        isMobile
+          ? '15px'
+          : '13px',
+
       fontWeight: 700,
-      lineHeight: 1.35,
-      textShadow:
-        '0 2px 5px rgba(0,0,0,.35)',
+
+      lineHeight: 1.4,
+
+      textAlign:
+        isMobile
+          ? 'center'
+          : 'left',
+
+      minHeight:
+        isMobile
+          ? '42px'
+          : '38px',
+
+      display: 'flex',
+
+      alignItems:
+        'flex-start',
+
+      justifyContent:
+        isMobile
+          ? 'center'
+          : 'flex-start',
     },
 
     arrow: {
-      flex: '0 0 auto',
-      width: '44px',
-      height: '44px',
-      borderRadius: '50%',
-      border: '1px solid #e4e4e4',
-      background: '#fff',
-      color: '#25326b',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      fontSize: '31px',
+      position: 'absolute',
+
+      top:
+        isMobile
+          ? '42%'
+          : '43%',
+
+      transform:
+        'translateY(-50%)',
+
+      width:
+        isMobile
+          ? '44px'
+          : '46px',
+
+      height:
+        isMobile
+          ? '44px'
+          : '46px',
+
+      borderRadius:
+        '50%',
+
+      border:
+        '1px solid #e4e4e4',
+
+      background:
+        'rgba(255,255,255,.96)',
+
+      color:
+        '#25326b',
+
+      display:
+        'flex',
+
+      alignItems:
+        'center',
+
+      justifyContent:
+        'center',
+
+      fontSize:
+        isMobile
+          ? '30px'
+          : '31px',
+
       lineHeight: 1,
-      cursor: 'pointer',
+
+      cursor:
+        'pointer',
+
       boxShadow:
-        '0 8px 20px rgba(40,30,80,.10)',
+        '0 8px 22px rgba(40,30,80,.14)',
+
       transition:
         'transform .2s ease, box-shadow .2s ease',
-      flexShrink: 0,
+
+      zIndex: 10,
+
+      padding:
+        0,
+    },
+
+    leftArrow: {
+      left:
+        isMobile
+          ? '-5px'
+          : '0',
+    },
+
+    rightArrow: {
+      right:
+        isMobile
+          ? '-5px'
+          : '0',
     },
 
     dots: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      gap: '8px',
-      marginTop: '24px',
+      display:
+        'flex',
+
+      justifyContent:
+        'center',
+
+      alignItems:
+        'center',
+
+      gap:
+        isMobile
+          ? '8px'
+          : '8px',
+
+      marginTop:
+        isMobile
+          ? '20px'
+          : '24px',
+
+      marginBottom:
+        isMobile
+          ? '10px'
+          : '0',
     },
   }
 
@@ -1341,180 +1587,276 @@ function Galeri() {
         <p
           style={{
             maxWidth: '650px',
-            margin: '12px auto 0',
-            textAlign: 'center',
-            color: '#777',
-            fontSize: '15px',
-            lineHeight: 1.7,
+            margin:
+              '12px auto 0',
+
+            textAlign:
+              'center',
+
+            color:
+              '#777',
+
+            fontSize:
+              isMobile
+                ? '14px'
+                : '15px',
+
+            lineHeight:
+              1.7,
+
+            padding:
+              isMobile
+                ? '0 12px'
+                : '0',
           }}
         >
-          Lihat keseruan anak-anak belajar,
-          bermain, dan berkarya bersama Rainbow Kids.
+          Lihat keseruan anak-anak
+          belajar, bermain, dan
+          berkarya bersama Rainbow Kids.
         </p>
       </Reveal>
 
-      <div style={carouselStyles.wrapper}>
-        {/* PREVIOUS */}
+      {/* =====================================================
+          CAROUSEL
+      ====================================================== */}
+
+      <div
+        style={
+          carouselStyles.wrapper
+        }
+      >
+        {/* TOMBOL KIRI */}
 
         <button
           type="button"
-          style={carouselStyles.arrow}
-          onClick={() => go(-1)}
+          style={{
+            ...carouselStyles.arrow,
+            ...carouselStyles.leftArrow,
+          }}
+          onClick={() =>
+            go(-1)
+          }
           aria-label="Foto sebelumnya"
           onMouseEnter={(e) => {
             e.currentTarget.style.transform =
-              'scale(1.08)'
+              'translateY(-50%) scale(1.08)'
 
             e.currentTarget.style.boxShadow =
-              '0 12px 25px rgba(40,30,80,.16)'
+              '0 12px 25px rgba(40,30,80,.20)'
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.transform =
-              'scale(1)'
+              'translateY(-50%) scale(1)'
 
             e.currentTarget.style.boxShadow =
-              '0 8px 20px rgba(40,30,80,.10)'
+              '0 8px 22px rgba(40,30,80,.14)'
           }}
         >
           ‹
         </button>
 
+
         {/* VIEWPORT */}
 
-        <div style={carouselStyles.viewport}>
-          <div style={carouselStyles.track}>
-            {galeri.map((g, i) => (
-              <div
-                key={`${g.label}-${i}`}
-                style={carouselStyles.slide}
-              >
-                <div style={carouselStyles.item}>
-                  <img
-                    src={g.src}
-                    alt={g.label}
-                    loading="lazy"
-                    style={carouselStyles.img}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.transform =
-                        'scale(1.06)'
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.transform =
-                        'scale(1)'
-                    }}
-                  />
-
+        <div
+          style={
+            carouselStyles.viewport
+          }
+        >
+          <div
+            style={
+              carouselStyles.track
+            }
+          >
+            {galeri.map(
+              (g, i) => (
+                <div
+                  key={`${g.label}-${i}`}
+                  style={
+                    carouselStyles.slide
+                  }
+                >
                   <div
                     style={
-                      carouselStyles.overlay
-                    }
-                  />
-
-                  <span
-                    style={
-                      carouselStyles.caption
+                      carouselStyles.item
                     }
                   >
-                    {g.label}
-                  </span>
+                    {/* FOTO */}
+
+                    <div
+                      style={
+                        carouselStyles.imageBox
+                      }
+                    >
+                      <img
+                        src={g.src}
+                        alt={g.label}
+                        loading="lazy"
+                        style={
+                          carouselStyles.img
+                        }
+
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.transform =
+                            'scale(1.035)'
+                        }}
+
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.transform =
+                            'scale(1)'
+                        }}
+                      />
+                    </div>
+
+                    {/* CAPTION DI LUAR FOTO */}
+
+                    <div
+                      style={
+                        carouselStyles.caption
+                      }
+                    >
+                      {g.label}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            ))}
+              )
+            )}
           </div>
         </div>
 
-        {/* NEXT */}
+
+        {/* TOMBOL KANAN */}
 
         <button
           type="button"
-          style={carouselStyles.arrow}
-          onClick={() => go(1)}
+          style={{
+            ...carouselStyles.arrow,
+            ...carouselStyles.rightArrow,
+          }}
+          onClick={() =>
+            go(1)
+          }
           aria-label="Foto berikutnya"
           onMouseEnter={(e) => {
             e.currentTarget.style.transform =
-              'scale(1.08)'
+              'translateY(-50%) scale(1.08)'
 
             e.currentTarget.style.boxShadow =
-              '0 12px 25px rgba(40,30,80,.16)'
+              '0 12px 25px rgba(40,30,80,.20)'
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.transform =
-              'scale(1)'
+              'translateY(-50%) scale(1)'
 
             e.currentTarget.style.boxShadow =
-              '0 8px 20px rgba(40,30,80,.10)'
+              '0 8px 22px rgba(40,30,80,.14)'
           }}
         >
           ›
         </button>
       </div>
 
-      {/* DOTS */}
 
-      <div style={carouselStyles.dots}>
+      {/* =====================================================
+          DOT INDICATOR
+      ====================================================== */}
+
+      <div
+        style={
+          carouselStyles.dots
+        }
+      >
         {Array.from({
-          length: maxIndex + 1,
-        }).map((_, i) => (
-          <button
-            key={i}
-            type="button"
-            onClick={() => setIdx(i)}
-            aria-label={`Halaman galeri ${
-              i + 1
-            }`}
-            style={{
-              width:
-                i === idx ? '24px' : '9px',
-              height: '9px',
-              padding: 0,
-              border: 0,
-              borderRadius: '999px',
+          length:
+            maxIndex + 1,
+        }).map(
+          (_, i) => (
+            <button
+              key={i}
+              type="button"
+              onClick={() =>
+                setIdx(i)
+              }
+              aria-label={
+                `Halaman galeri ${
+                  i + 1
+                }`
+              }
+              style={{
+                width:
+                  i === idx
+                    ? '24px'
+                    : '9px',
 
-              background:
-                i === idx
-                  ? '#ff7060'
-                  : '#d2d2d2',
+                height:
+                  '9px',
 
-              cursor: 'pointer',
+                padding:
+                  0,
 
-              transition:
-                'width .25s ease, background .25s ease',
-            }}
-          />
-        ))}
+                border:
+                  0,
+
+                borderRadius:
+                  '999px',
+
+                background:
+                  i === idx
+                    ? '#ff7060'
+                    : '#d2d2d2',
+
+                cursor:
+                  'pointer',
+
+                transition:
+                  'width .25s ease, background .25s ease',
+              }}
+            />
+          )
+        )}
       </div>
     </section>
   )
 }
+
 
 /* =========================================================
    TESTIMONI
 ========================================================= */
 
 function Testimoni() {
-  const [idx, setIdx] = useState(0)
+  const [idx, setIdx] =
+    useState(0)
 
-  const total = testimoni.length
+  const total =
+    testimoni.length
 
-  const timerRef = useRef(null)
+  const timerRef =
+    useRef(null)
 
   function go(dir) {
     setIdx(
       (prev) =>
-        (prev + dir + total) % total
+        (prev + dir + total) %
+        total
     )
   }
 
   function restartTimer() {
     if (timerRef.current) {
-      clearInterval(timerRef.current)
+      clearInterval(
+        timerRef.current
+      )
     }
 
-    timerRef.current = setInterval(() => {
-      setIdx(
-        (prev) => (prev + 1) % total
-      )
-    }, 5000)
+    timerRef.current =
+      setInterval(() => {
+        setIdx(
+          (prev) =>
+            (prev + 1) %
+            total
+        )
+      }, 5000)
   }
 
   useEffect(() => {
@@ -1522,7 +1864,9 @@ function Testimoni() {
 
     return () => {
       if (timerRef.current) {
-        clearInterval(timerRef.current)
+        clearInterval(
+          timerRef.current
+        )
       }
     }
 
@@ -1546,11 +1890,13 @@ function Testimoni() {
     >
       <div className="testimoni__inner">
         <Reveal>
-          <h2>Kata Para Orang Tua</h2>
+          <h2>
+            Kata Para Orang Tua
+          </h2>
 
           <p className="testimoni__sub">
-            Anak senang belajar, orang tua pun
-            tenang.
+            Anak senang belajar,
+            orang tua pun tenang.
           </p>
         </Reveal>
 
@@ -1603,23 +1949,30 @@ function Testimoni() {
         </div>
 
         <div className="testimoni__dots">
-          {testimoni.map((t, i) => (
-            <button
-              key={t.nama}
-              className={`testimoni__dot ${
-                i === idx
-                  ? 'is-active'
-                  : ''
-              }`}
-              onClick={() => handleDot(i)}
-              aria-label={`Testimoni ${t.nama}`}
-            />
-          ))}
+          {testimoni.map(
+            (t, i) => (
+              <button
+                key={t.nama}
+                className={`testimoni__dot ${
+                  i === idx
+                    ? 'is-active'
+                    : ''
+                }`}
+                onClick={() =>
+                  handleDot(i)
+                }
+                aria-label={
+                  `Testimoni ${t.nama}`
+                }
+              />
+            )
+          )}
         </div>
       </div>
     </section>
   )
 }
+
 
 /* =========================================================
    KONTAK
@@ -1632,11 +1985,14 @@ function Kontak() {
       className="kontak"
     >
       <div className="kontak__inner">
-        <h2>Kunjungi Kami</h2>
+        <h2>
+          Kunjungi Kami
+        </h2>
 
         <p className="kontak__sub">
-          Ayah/Bunda bisa datang langsung untuk
-          lihat suasana belajar Rainbow Kids.
+          Ayah/Bunda bisa datang langsung
+          untuk lihat suasana belajar
+          Rainbow Kids.
         </p>
 
         <ul className="kontak__list">
@@ -1645,9 +2001,9 @@ function Kontak() {
               <PinIcon />
             </span>
 
-            Kav.sidomakmur I Rt. 005/03 No. 14.
-            Kel. Kaliabang Tengah. Kec. Bekasi
-            Utara. Kota Bekasi
+            Kav.sidomakmur I Rt. 005/03
+            No. 14. Kel. Kaliabang Tengah.
+            Kec. Bekasi Utara. Kota Bekasi
           </li>
 
           <li>
@@ -1663,7 +2019,8 @@ function Kontak() {
               <ClockIcon />
             </span>
 
-            Senin–Jumat, 07.30–11.00
+            Senin–Jumat,
+            07.30–11.00
           </li>
         </ul>
 
@@ -1681,6 +2038,7 @@ function Kontak() {
   )
 }
 
+
 /* =========================================================
    FOOTER
 ========================================================= */
@@ -1696,19 +2054,26 @@ function Footer() {
           />
 
           <div>
-            <strong>Rainbow Kids</strong>
-            <span>Sidomakmur</span>
+            <strong>
+              Rainbow Kids
+            </strong>
+
+            <span>
+              Sidomakmur
+            </span>
           </div>
         </div>
 
         <p className="footer__copy">
-          © {new Date().getFullYear()} RAINBOW KIDS
+          © {new Date().getFullYear()}{' '}
+          RAINBOW KIDS
           SIDOMAKMUR. ALL RIGHTS RESERVED.
         </p>
       </div>
     </footer>
   )
 }
+
 
 /* =========================================================
    APP
