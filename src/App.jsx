@@ -564,10 +564,15 @@ function NavBar() {
     }
   }, [activeHref, open])
 
+  function handleLogoClick(e) {
+    e.preventDefault()
+    window.location.reload()
+  }
+
   return (
     <header className="nav">
       <div className="nav__inner">
-        <a href="#top" className="nav__brand">
+        <a href="#top" className="nav__brand" onClick={handleLogoClick}>
           <img
             src={logo}
             alt="Logo Rainbow Kids"
@@ -662,7 +667,7 @@ function Hero() {
         aria-hidden="true"
       />
 
-      <div className="hero__content">
+      <div className="hero__content hero__content--intro">
         <p className="eyebrow eyebrow--onlight">
           BIMBA untuk usia 4–6 tahun · Sidomakmur
         </p>
@@ -1223,9 +1228,41 @@ function Galeri() {
 function Testimoni() {
   const [idx, setIdx] = useState(0)
   const total = testimoni.length
+  const timerRef = useRef(null)
 
   function go(dir) {
     setIdx((prev) => (prev + dir + total) % total)
+  }
+
+  function restartTimer() {
+    if (timerRef.current) {
+      clearInterval(timerRef.current)
+    }
+
+    timerRef.current = setInterval(() => {
+      setIdx((prev) => (prev + 1) % total)
+    }, 5000)
+  }
+
+  useEffect(() => {
+    restartTimer()
+
+    return () => {
+      if (timerRef.current) {
+        clearInterval(timerRef.current)
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [total])
+
+  function handleManualGo(dir) {
+    go(dir)
+    restartTimer()
+  }
+
+  function handleDot(i) {
+    setIdx(i)
+    restartTimer()
   }
 
   return (
@@ -1242,7 +1279,7 @@ function Testimoni() {
         <div className="testimoni__carousel">
           <button
             className="testimoni__arrow"
-            onClick={() => go(-1)}
+            onClick={() => handleManualGo(-1)}
             aria-label="Testimoni sebelumnya"
           >
             ‹
@@ -1270,7 +1307,7 @@ function Testimoni() {
 
           <button
             className="testimoni__arrow"
-            onClick={() => go(1)}
+            onClick={() => handleManualGo(1)}
             aria-label="Testimoni berikutnya"
           >
             ›
@@ -1284,7 +1321,7 @@ function Testimoni() {
               className={`testimoni__dot ${
                 i === idx ? 'is-active' : ''
               }`}
-              onClick={() => setIdx(i)}
+              onClick={() => handleDot(i)}
               aria-label={`Testimoni ${t.nama}`}
             />
           ))}
@@ -1318,7 +1355,7 @@ function Kontak() {
             <span className="kontak__icon">
               <PhoneIcon />
             </span>
-            0895-1546-0401
+            089515460401
           </li>
 
           <li>
@@ -1360,8 +1397,8 @@ function Footer() {
         </div>
 
         <p className="footer__copy">
-          © {new Date().getFullYear()} Rainbow Kids
-          Sidomakmur. Semua hak dilindungi.
+          © {new Date().getFullYear()} RAINBOW KIDS
+          SIDOMAKMUR. ALL RIGHTS RESERVED.
         </p>
       </div>
     </footer>
