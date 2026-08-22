@@ -1,33 +1,22 @@
 import { useState, useEffect, useRef } from 'react'
-
 import logo from './assets/logo.png'
 import balon from './assets/balon.png'
 import bintang1 from './assets/bintang_1.png'
 import bintang2 from './assets/bintang_2.png'
-
 import fotoBareng from './assets/foto_bareng.jpg'
 import fotoCampuran from './assets/foto_campuran.jpg'
-
 import iconGroup from './assets/icon_group.png'
 import iconBintang from './assets/icon_bintang.png'
 import iconUang from './assets/icon_uang.png'
 import iconQuran from './assets/icon_quran.png'
 import iconHeart from './assets/icon_heart.png'
-
 import fotoKidsRainbow from './assets/foto_kids_rainbow.jpg'
 import fotoBelajar from './assets/foto_belajar.jpg'
-
 import fotowarnain1 from './assets/gambarbareng.jpeg'
 import fotowarnain2 from './assets/mewarnai.jpeg'
 import fotowarnain3 from './assets/gambar.jpeg'
 import fotowarnain4 from './assets/warnai.jpeg'
-
 import fotosekolah from './assets/sekolah.jpeg'
-
-
-/* =========================================================
-   DATA
-========================================================= */
 
 const keunggulan = [
   {
@@ -98,6 +87,32 @@ const rainbowLetterColors = [
   'purple',
 ]
 
+function RainbowText({ text }) {
+  let i = -1
+
+  return (
+    <>
+      {text.split('').map((ch, idx) => {
+        if (ch === ' ') return ' '
+
+        i += 1
+
+        const color =
+          rainbowLetterColors[i % rainbowLetterColors.length]
+
+        return (
+          <span
+            key={idx}
+            className={`rainbow-letter rainbow-letter--${color}`}
+          >
+            {ch}
+          </span>
+        )
+      })}
+    </>
+  )
+}
+
 const programList = [
   {
     judul: 'Program Reguler',
@@ -140,10 +155,6 @@ const testimoni = [
   },
 ]
 
-/* =========================================================
-   GALERI
-========================================================= */
-
 const galeri = [
   {
     src: fotoBelajar,
@@ -177,42 +188,6 @@ const galeri = [
 
 const WA_NUMBER = '6289515460401'
 
-
-/* =========================================================
-   RAINBOW TEXT
-========================================================= */
-
-function RainbowText({ text }) {
-  let i = -1
-
-  return (
-    <>
-      {text.split('').map((ch, idx) => {
-        if (ch === ' ') return ' '
-
-        i += 1
-
-        const color =
-          rainbowLetterColors[i % rainbowLetterColors.length]
-
-        return (
-          <span
-            key={idx}
-            className={`rainbow-letter rainbow-letter--${color}`}
-          >
-            {ch}
-          </span>
-        )
-      })}
-    </>
-  )
-}
-
-
-/* =========================================================
-   ICONS
-========================================================= */
-
 function PinIcon() {
   return (
     <svg
@@ -228,7 +203,6 @@ function PinIcon() {
         strokeWidth="2"
         strokeLinejoin="round"
       />
-
       <circle
         cx="12"
         cy="10"
@@ -239,7 +213,6 @@ function PinIcon() {
     </svg>
   )
 }
-
 
 function PhoneIcon() {
   return (
@@ -260,7 +233,6 @@ function PhoneIcon() {
   )
 }
 
-
 function ClockIcon() {
   return (
     <svg
@@ -277,7 +249,6 @@ function ClockIcon() {
         stroke="currentColor"
         strokeWidth="2"
       />
-
       <path
         d="M12 7v5l3.2 2"
         stroke="currentColor"
@@ -288,7 +259,6 @@ function ClockIcon() {
     </svg>
   )
 }
-
 
 function WhatsAppIcon({ size = 26 }) {
   return (
@@ -303,7 +273,6 @@ function WhatsAppIcon({ size = 26 }) {
         d="M16.02 3C9.4 3 4 8.37 4 15c0 2.31.65 4.48 1.78 6.33L3 29l7.86-2.7A11.9 11.9 0 0 0 16.02 27C22.65 27 28 21.63 28 15S22.65 3 16.02 3Z"
         fill="#25D366"
       />
-
       <path
         d="M21.53 18.22c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.47-.88-.79-1.47-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.6-.91-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35Z"
         fill="#fff"
@@ -311,7 +280,6 @@ function WhatsAppIcon({ size = 26 }) {
     </svg>
   )
 }
-
 
 function PencilIcon() {
   return (
@@ -328,7 +296,6 @@ function PencilIcon() {
         strokeWidth="1.8"
         strokeLinejoin="round"
       />
-
       <path
         d="M14 7l3 3"
         stroke="currentColor"
@@ -338,7 +305,6 @@ function PencilIcon() {
     </svg>
   )
 }
-
 
 function BookIcon() {
   return (
@@ -355,7 +321,6 @@ function BookIcon() {
         strokeWidth="1.8"
         strokeLinejoin="round"
       />
-
       <path
         d="M20 5.5c0-.8-.7-1.5-1.5-1.5H13v15h5.5a1.5 1.5 0 0 0 1.5-1.5v-12Z"
         stroke="currentColor"
@@ -365,7 +330,6 @@ function BookIcon() {
     </svg>
   )
 }
-
 
 function SparkIcon({ size = 22 }) {
   return (
@@ -385,11 +349,6 @@ function SparkIcon({ size = 22 }) {
     </svg>
   )
 }
-
-
-/* =========================================================
-   REVEAL ANIMATION
-========================================================= */
 
 function useReveal() {
   const ref = useRef(null)
@@ -419,12 +378,7 @@ function useReveal() {
   return ref
 }
 
-
-function Reveal({
-  children,
-  className = '',
-  delay = 0,
-}) {
+function Reveal({ children, className = '', delay = 0 }) {
   const ref = useReveal()
 
   return (
@@ -440,11 +394,6 @@ function Reveal({
   )
 }
 
-
-/* =========================================================
-   WHATSAPP FLOAT
-========================================================= */
-
 function WhatsAppFloat() {
   return (
     <a
@@ -458,11 +407,6 @@ function WhatsAppFloat() {
     </a>
   )
 }
-
-
-/* =========================================================
-   BACK TO TOP
-========================================================= */
 
 function BackToTop() {
   const [visible, setVisible] = useState(false)
@@ -492,9 +436,7 @@ function BackToTop() {
 
   return (
     <button
-      className={`back-to-top ${
-        visible ? 'is-visible' : ''
-      }`}
+      className={`back-to-top ${visible ? 'is-visible' : ''}`}
       onClick={handleClick}
       aria-label="Kembali ke atas"
     >
@@ -517,11 +459,6 @@ function BackToTop() {
   )
 }
 
-
-/* =========================================================
-   TOP BAR
-========================================================= */
-
 function TopBar() {
   return (
     <div className="topbar">
@@ -538,17 +475,9 @@ function TopBar() {
   )
 }
 
-
-/* =========================================================
-   NAVBAR
-========================================================= */
-
 function NavBar() {
   const [open, setOpen] = useState(false)
-
-  const [activeHref, setActiveHref] =
-    useState('#top')
-
+  const [activeHref, setActiveHref] = useState('#top')
   const [indicator, setIndicator] = useState({
     left: 0,
     width: 0,
@@ -567,22 +496,16 @@ function NavBar() {
   ]
 
   useEffect(() => {
-    const ids = links.map(([href]) =>
-      href.slice(1)
-    )
+    const ids = links.map(([href]) => href.slice(1))
 
     const sections = ids
-      .map((id) =>
-        document.getElementById(id)
-      )
+      .map((id) => document.getElementById(id))
       .filter(Boolean)
 
     if (!sections.length) return
 
     function onScroll() {
-      const anchor =
-        window.scrollY + 160
-
+      const anchor = window.scrollY + 160
       let current = null
 
       for (const section of sections) {
@@ -591,48 +514,27 @@ function NavBar() {
         }
       }
 
-      setActiveHref(
-        current
-          ? `#${current}`
-          : '#top'
-      )
+      setActiveHref(current ? `#${current}` : '#top')
     }
 
     onScroll()
 
-    window.addEventListener(
-      'scroll',
-      onScroll,
-      {
-        passive: true,
-      }
-    )
+    window.addEventListener('scroll', onScroll, {
+      passive: true,
+    })
 
-    window.addEventListener(
-      'resize',
-      onScroll
-    )
+    window.addEventListener('resize', onScroll)
 
     return () => {
-      window.removeEventListener(
-        'scroll',
-        onScroll
-      )
-
-      window.removeEventListener(
-        'resize',
-        onScroll
-      )
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onScroll)
     }
   }, [])
 
   useEffect(() => {
     function updateIndicator() {
-      const container =
-        linksRef.current
-
-      const el =
-        itemRefs.current[activeHref]
+      const container = linksRef.current
+      const el = itemRefs.current[activeHref]
 
       if (!container || !el) {
         setIndicator((prev) => ({
@@ -643,35 +545,22 @@ function NavBar() {
         return
       }
 
-      const containerBox =
-        container.getBoundingClientRect()
-
-      const elBox =
-        el.getBoundingClientRect()
+      const containerBox = container.getBoundingClientRect()
+      const elBox = el.getBoundingClientRect()
 
       setIndicator({
-        left:
-          elBox.left -
-          containerBox.left,
-
+        left: elBox.left - containerBox.left,
         width: elBox.width,
-
         opacity: 1,
       })
     }
 
     updateIndicator()
 
-    window.addEventListener(
-      'resize',
-      updateIndicator
-    )
+    window.addEventListener('resize', updateIndicator)
 
     return () => {
-      window.removeEventListener(
-        'resize',
-        updateIndicator
-      )
+      window.removeEventListener('resize', updateIndicator)
     }
   }, [activeHref, open])
 
@@ -683,11 +572,7 @@ function NavBar() {
   return (
     <header className="nav">
       <div className="nav__inner">
-        <a
-          href="#top"
-          className="nav__brand"
-          onClick={handleLogoClick}
-        >
+        <a href="#top" className="nav__brand" onClick={handleLogoClick}>
           <img
             src={logo}
             alt="Logo Rainbow Kids"
@@ -696,62 +581,42 @@ function NavBar() {
 
           <span className="nav__brandtext">
             BIMBA Rainbow Kids
-            <small>
-              Sidomakmur
-            </small>
+            <small>Sidomakmur</small>
           </span>
         </a>
 
         <nav
-          className={`nav__links ${
-            open ? 'is-open' : ''
-          }`}
+          className={`nav__links ${open ? 'is-open' : ''}`}
           ref={linksRef}
         >
           <span
             className="nav__indicator"
             style={{
-              transform:
-                `translateX(${indicator.left}px)`,
-
-              width:
-                indicator.width,
-
-              opacity:
-                indicator.opacity,
+              transform: `translateX(${indicator.left}px)`,
+              width: indicator.width,
+              opacity: indicator.opacity,
             }}
             aria-hidden="true"
           />
 
-          {links.map(
-            ([href, label]) => (
-              <a
-                key={href}
-                href={href}
-                ref={(el) => {
-                  itemRefs.current[href] =
-                    el
-                }}
-                className={
-                  activeHref === href
-                    ? 'is-active'
-                    : ''
-                }
-                onClick={() =>
-                  setOpen(false)
-                }
-              >
-                {label}
-              </a>
-            )
-          )}
+          {links.map(([href, label]) => (
+            <a
+              key={href}
+              href={href}
+              ref={(el) => {
+                itemRefs.current[href] = el
+              }}
+              className={activeHref === href ? 'is-active' : ''}
+              onClick={() => setOpen(false)}
+            >
+              {label}
+            </a>
+          ))}
         </nav>
 
         <button
           className="nav__burger"
-          onClick={() =>
-            setOpen(!open)
-          }
+          onClick={() => setOpen(!open)}
           aria-label="Buka menu"
         >
           <span />
@@ -763,25 +628,16 @@ function NavBar() {
   )
 }
 
-
-/* =========================================================
-   HERO
-========================================================= */
-
 function Hero() {
   return (
     <section
       id="top"
       className="hero"
       style={{
-        backgroundImage:
-          `url(${fotoKidsRainbow})`,
+        backgroundImage: `url(${fotoKidsRainbow})`,
       }}
     >
-      <div
-        className="hero__overlay"
-        aria-hidden="true"
-      />
+      <div className="hero__overlay" aria-hidden="true" />
 
       <img
         src={bintang1}
@@ -816,14 +672,11 @@ function Hero() {
           BIMBA untuk usia 4–6 tahun · Sidomakmur
         </p>
 
-        <h1>
-          Belajar Ceria, Tumbuh Penuh Warna!
-        </h1>
+        <h1>Belajar Ceria, Tumbuh Penuh Warna!</h1>
 
         <p className="hero__sub">
-          Rainbow Kids membimbing si kecil
-          belajar sambil bermain — lengkap
-          dengan program{' '}
+          Rainbow Kids membimbing si kecil belajar sambil bermain —
+          lengkap dengan program{' '}
           <strong>
             Tahfidz Qur&apos;an setiap hari Jumat
           </strong>{' '}
@@ -834,17 +687,9 @@ function Hero() {
   )
 }
 
-
-/* =========================================================
-   TENTANG
-========================================================= */
-
 function Tentang() {
   return (
-    <section
-      id="tentang"
-      className="section tentang"
-    >
+    <section id="tentang" className="section tentang">
       <div className="tentang__grid">
         <Reveal className="reveal--left">
           <div className="photo-frame tentang__photo">
@@ -856,10 +701,7 @@ function Tentang() {
           </div>
         </Reveal>
 
-        <Reveal
-          className="reveal--right"
-          delay={100}
-        >
+        <Reveal className="reveal--right" delay={100}>
           <div className="tentang__text">
             <img
               src={logo}
@@ -868,16 +710,12 @@ function Tentang() {
             />
 
             <p className="tentang__desc">
-              Rainbow Kids adalah BIMBA
-              (Bimbingan Belajar Anak) di
-              Sidomakmur yang fokus pada
-              penumbuhan minat belajar anak
-              usia 4–6 tahun, bukan sekadar
-              bisa baca tulis. Kami percaya
-              anak yang mencintai belajar
-              sejak dini akan tumbuh menjadi
-              pribadi yang cerdas, percaya diri,
-              mandiri, dan dekat dengan Al-Qur&apos;an
+              Rainbow Kids adalah BIMBA (Bimbingan Belajar Anak)
+              di Sidomakmur yang fokus pada penumbuhan minat
+              belajar anak usia 4–6 tahun, bukan sekadar bisa
+              baca tulis. Kami percaya anak yang mencintai belajar
+              sejak dini akan tumbuh menjadi pribadi yang cerdas,
+              percaya diri, mandiri, dan dekat dengan Al-Qur&apos;an
               lewat Tahfidz mingguan.
             </p>
           </div>
@@ -887,31 +725,23 @@ function Tentang() {
       <div className="tentang__cards">
         <Reveal delay={50}>
           <div className="visi-card">
-            <span className="visi-card__tag">
-              Visi
-            </span>
+            <span className="visi-card__tag">Visi</span>
 
             <p>
-              Menjadi tempat belajar pilihan
-              yang membentuk anak cerdas,
-              mandiri, dan berakhlak mulia
-              sejak usia dini.
+              Menjadi tempat belajar pilihan yang membentuk anak
+              cerdas, mandiri, dan berakhlak mulia sejak usia dini.
             </p>
           </div>
         </Reveal>
 
         <Reveal delay={150}>
           <div className="visi-card">
-            <span className="visi-card__tag">
-              Misi
-            </span>
+            <span className="visi-card__tag">Misi</span>
 
             <p>
-              Menghadirkan pembelajaran aktif
-              berbasis bermain, membiasakan
-              nilai-nilai Islami lewat Tahfidz
-              mingguan, dan menjalin kedekatan
-              erat dengan orang tua.
+              Menghadirkan pembelajaran aktif berbasis bermain,
+              membiasakan nilai-nilai Islami lewat Tahfidz mingguan,
+              dan menjalin kedekatan erat dengan orang tua.
             </p>
           </div>
         </Reveal>
@@ -920,21 +750,12 @@ function Tentang() {
   )
 }
 
-
-/* =========================================================
-   KEUNGGULAN
-========================================================= */
-
 function Keunggulan() {
   return (
-    <section
-      id="keunggulan"
-      className="section keunggulan"
-    >
+    <section id="keunggulan" className="section keunggulan">
       <Reveal className="section__head">
         <h2 className="keunggulan__title">
-          Mengapa Pilih{' '}
-          <RainbowText text="Rainbow Kids" />?{' '}
+          Mengapa Pilih <RainbowText text="Rainbow Kids" />?{' '}
           <img
             src={bintang1}
             className="sparkle-img"
@@ -944,32 +765,22 @@ function Keunggulan() {
         </h2>
 
         <p className="keunggulan__subtitle">
-          Belajar seru, tumbuh bahagia,
-          masa depan cerah!
+          Belajar seru, tumbuh bahagia, masa depan cerah!
         </p>
       </Reveal>
 
       <div className="keunggulan__grid">
         {keunggulan.map((k, i) => (
-          <Reveal
-            key={k.judul}
-            delay={i * 80}
-          >
+          <Reveal key={k.judul} delay={i * 80}>
             <div
               className={`keunggulan-card ${
-                k.judul.includes(
-                  'Tahfidz'
-                )
+                k.judul.includes('Tahfidz')
                   ? 'is-highlight'
                   : ''
               }`}
             >
               <div className="keunggulan-card__media">
-                <img
-                  src={k.ikon}
-                  alt=""
-                  aria-hidden="true"
-                />
+                <img src={k.ikon} alt="" aria-hidden="true" />
               </div>
 
               <h3>{k.judul}</h3>
@@ -987,10 +798,7 @@ function Keunggulan() {
         ))}
       </div>
 
-      <Reveal
-        className="benefit__head"
-        delay={100}
-      >
+      <Reveal className="benefit__head" delay={100}>
         <p className="benefit__title">
           <img
             src={bintang2}
@@ -1012,10 +820,7 @@ function Keunggulan() {
 
       <div className="benefit__grid">
         {benefits.map((b, i) => (
-          <Reveal
-            key={b.judul}
-            delay={i * 70}
-          >
+          <Reveal key={b.judul} delay={i * 70}>
             <div
               className={`benefit-card benefit-card--${b.warna}`}
             >
@@ -1039,31 +844,17 @@ function Keunggulan() {
   )
 }
 
-
-/* =========================================================
-   PROGRAM
-========================================================= */
-
 function Program() {
   const programIcons = {
     star: (
-      <img
-        src={iconBintang}
-        alt=""
-        aria-hidden="true"
-      />
+      <img src={iconBintang} alt="" aria-hidden="true" />
     ),
-
     pencil: <PencilIcon />,
-
     book: <BookIcon />,
   }
 
   return (
-    <section
-      id="program"
-      className="section program"
-    >
+    <section id="program" className="section program">
       <div className="program__grid">
         <Reveal className="reveal--left">
           <div className="program__text">
@@ -1089,10 +880,8 @@ function Program() {
             </h2>
 
             <p className="program__intro">
-              Program lengkap untuk
-              mendukung tumbuh kembang
-              anak dengan cara belajar yang
-              menyenangkan.{' '}
+              Program lengkap untuk mendukung tumbuh kembang
+              anak dengan cara belajar yang menyenangkan.{' '}
               <img
                 src={iconHeart}
                 className="program__intro-heart"
@@ -1103,10 +892,7 @@ function Program() {
 
             <div className="program__cards">
               {programList.map((p) => (
-                <div
-                  key={p.judul}
-                  className="program-item"
-                >
+                <div key={p.judul} className="program-item">
                   <span
                     className={`program-item__icon program-item__icon--${p.warna}`}
                   >
@@ -1114,13 +900,8 @@ function Program() {
                   </span>
 
                   <span className="program-item__text">
-                    <strong>
-                      {p.judul}
-                    </strong>
-
-                    <span>
-                      {p.desc}
-                    </span>
+                    <strong>{p.judul}</strong>
+                    <span>{p.desc}</span>
                   </span>
                 </div>
               ))}
@@ -1128,10 +909,7 @@ function Program() {
           </div>
         </Reveal>
 
-        <Reveal
-          className="reveal--right"
-          delay={100}
-        >
+        <Reveal className="reveal--right" delay={100}>
           <div className="program__media">
             <div className="photo-frame program__photo">
               <img
@@ -1143,25 +921,18 @@ function Program() {
 
             <div className="program__quote">
               <span className="program__quote-icon">
-                <img
-                  src={iconHeart}
-                  alt=""
-                  aria-hidden="true"
-                />
+                <img src={iconHeart} alt="" aria-hidden="true" />
               </span>
 
               <div>
                 <strong>
-                  Belajar dengan Hati,
-                  Tumbuh Sepanjang Hati
+                  Belajar dengan Hati, Tumbuh Sepanjang Hati
                 </strong>
 
                 <p>
-                  Kami percaya setiap anak
-                  unik dan berharga. Di
-                  Rainbow Kids, mereka belajar,
-                  bermain, dan berkembang
-                  dengan bahagia.
+                  Kami percaya setiap anak unik dan berharga.
+                  Di Rainbow Kids, mereka belajar, bermain,
+                  dan berkembang dengan bahagia.
                 </p>
               </div>
             </div>
@@ -1172,55 +943,25 @@ function Program() {
   )
 }
 
-
 /* =========================================================
    GALERI CAROUSEL
-   =========================================================
-   
-   PERUBAHAN UTAMA:
-
-   1. Mobile:
-      - 1 gambar besar
-      - lebar hampir penuh layar
-      - aspect ratio landscape
-
-   2. Tablet:
-      - 2 gambar
-
-   3. Desktop:
-      - 4 gambar
-
-   4. Tombol diposisikan absolute
-      sehingga tidak mengurangi ukuran gambar.
-
-   5. Caption DIPINDAHKAN KE BAWAH GAMBAR
-      supaya tidak menutupi foto.
-
+   - Desktop: 4 foto
+   - Tablet: 2 foto
+   - Mobile: 1 foto
+   - Tombol prev/next
+   - Dot indikator
+   - Tidak membutuhkan library tambahan
 ========================================================= */
 
 function Galeri() {
   const [idx, setIdx] = useState(0)
-
-  const [visible, setVisible] =
-    useState(4)
-
-  const [screenWidth, setScreenWidth] =
-    useState(
-      typeof window !== 'undefined'
-        ? window.innerWidth
-        : 1200
-    )
+  const [visible, setVisible] = useState(4)
 
   useEffect(() => {
     function updateVisible() {
-      const width =
-        window.innerWidth
-
-      setScreenWidth(width)
-
-      if (width <= 600) {
+      if (window.innerWidth <= 600) {
         setVisible(1)
-      } else if (width <= 900) {
+      } else if (window.innerWidth <= 900) {
         setVisible(2)
       } else {
         setVisible(4)
@@ -1229,23 +970,14 @@ function Galeri() {
 
     updateVisible()
 
-    window.addEventListener(
-      'resize',
-      updateVisible
-    )
+    window.addEventListener('resize', updateVisible)
 
     return () => {
-      window.removeEventListener(
-        'resize',
-        updateVisible
-      )
+      window.removeEventListener('resize', updateVisible)
     }
   }, [])
 
-  const maxIndex = Math.max(
-    0,
-    galeri.length - visible
-  )
+  const maxIndex = Math.max(0, galeri.length - visible)
 
   useEffect(() => {
     if (idx > maxIndex) {
@@ -1269,315 +1001,112 @@ function Galeri() {
     })
   }
 
-  const isMobile =
-    screenWidth <= 600
-
-  const isTablet =
-    screenWidth > 600 &&
-    screenWidth <= 900
-
-  /*
-    Lebar carousel:
-
-    Mobile:
-    hampir full layar
-
-    Tablet/Desktop:
-    tetap dibatasi agar terlihat
-    profesional.
-  */
-
-  const carouselWidth = isMobile
-    ? 'calc(100% - 24px)'
-    : isTablet
-      ? 'calc(100% - 70px)'
-      : 'min(1150px, calc(100% - 70px))'
-
-  /*
-    Jarak antar slide.
-  */
-
-  const slideWidth =
-    100 / visible
-
-  /*
-    Tinggi gambar.
-
-    Mobile dibuat besar karena sebelumnya
-    hanya 205px dan terlihat terlalu kecil.
-
-    Kita gunakan aspect ratio landscape.
-  */
-
-  const imageAspectRatio =
-    isMobile
-      ? '16 / 10'
-      : isTablet
-        ? '16 / 10'
-        : '16 / 9'
+  const slideWidth = 100 / visible
 
   const carouselStyles = {
     wrapper: {
-      width: carouselWidth,
-      margin:
-        isMobile
-          ? '38px auto 0'
-          : '42px auto 0',
-
-      position: 'relative',
-
-      padding:
-        isMobile
-          ? '0'
-          : '0 42px',
-
-      boxSizing: 'border-box',
+      width: 'min(1150px, calc(100% - 70px))',
+      margin: '42px auto 0',
+      display: 'flex',
+      alignItems: 'center',
+      gap: '14px',
     },
 
     viewport: {
-      width: '100%',
+      flex: 1,
+      minWidth: 0,
       overflow: 'hidden',
     },
 
     track: {
       display: 'flex',
       width: '100%',
-
-      transform:
-        `translateX(-${idx * slideWidth}%)`,
-
+      transform: `translateX(-${idx * slideWidth}%)`,
       transition:
         'transform 550ms cubic-bezier(0.22, 1, 0.36, 1)',
     },
 
     slide: {
-      flex:
-        `0 0 ${slideWidth}%`,
-
-      width:
-        `${slideWidth}%`,
-
-      boxSizing:
-        'border-box',
-
-      padding:
-        isMobile
-          ? '0 2px'
-          : '0 7px',
+      flex: `0 0 ${slideWidth}%`,
+      width: `${slideWidth}%`,
+      boxSizing: 'border-box',
+      padding: '0 7px',
     },
 
     item: {
-      width: '100%',
       position: 'relative',
-    },
-
-    imageBox: {
       width: '100%',
-
-      /*
-        Inilah bagian penting.
-
-        Foto tidak lagi 205px.
-        Sekarang mengikuti ratio
-        landscape.
-      */
-
-      aspectRatio:
-        imageAspectRatio,
-
+      height: '205px',
       overflow: 'hidden',
-
-      borderRadius:
-        isMobile
-          ? '22px'
-          : '18px',
-
-      background:
-        '#f1f1f1',
-
-      boxShadow:
-        '0 14px 35px rgba(40, 30, 80, 0.12)',
-
-      position: 'relative',
+      borderRadius: '18px',
+      background: '#eee',
+      boxShadow: '0 12px 30px rgba(40, 30, 80, 0.10)',
+      cursor: 'pointer',
+      transition:
+        'transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1)',
     },
 
     img: {
       width: '100%',
       height: '100%',
       display: 'block',
+      objectFit: 'cover',
+      transition: 'transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)',
+    },
 
-      /*
-        contain supaya foto landscape
-        tidak dipotong secara paksa.
-      */
-
-      objectFit: 'contain',
-
+    overlay: {
+      position: 'absolute',
+      inset: 0,
       background:
-        '#eeeeee',
-
-      transition:
-        'transform .35s ease',
+        'linear-gradient(to top, rgba(20, 30, 70, .78), rgba(20, 30, 70, .03) 68%)',
+      pointerEvents: 'none',
     },
 
     caption: {
-      marginTop:
-        isMobile
-          ? '12px'
-          : '10px',
-
-      padding:
-        isMobile
-          ? '0 8px'
-          : '0 6px',
-
-      color:
-        '#25326b',
-
-      fontSize:
-        isMobile
-          ? '15px'
-          : '13px',
-
+      position: 'absolute',
+      left: '14px',
+      right: '14px',
+      bottom: '13px',
+      color: '#fff',
+      fontSize: '13px',
       fontWeight: 700,
-
-      lineHeight: 1.4,
-
-      textAlign:
-        isMobile
-          ? 'center'
-          : 'left',
-
-      minHeight:
-        isMobile
-          ? '42px'
-          : '38px',
-
-      display: 'flex',
-
-      alignItems:
-        'flex-start',
-
-      justifyContent:
-        isMobile
-          ? 'center'
-          : 'flex-start',
+      lineHeight: 1.35,
+      textShadow: '0 2px 5px rgba(0,0,0,.35)',
     },
 
     arrow: {
-      position: 'absolute',
-
-      top:
-        isMobile
-          ? '42%'
-          : '43%',
-
-      transform:
-        'translateY(-50%)',
-
-      width:
-        isMobile
-          ? '44px'
-          : '46px',
-
-      height:
-        isMobile
-          ? '44px'
-          : '46px',
-
-      borderRadius:
-        '50%',
-
-      border:
-        '1px solid #e4e4e4',
-
-      background:
-        'rgba(255,255,255,.96)',
-
-      color:
-        '#25326b',
-
-      display:
-        'flex',
-
-      alignItems:
-        'center',
-
-      justifyContent:
-        'center',
-
-      fontSize:
-        isMobile
-          ? '30px'
-          : '31px',
-
+      flex: '0 0 auto',
+      width: '44px',
+      height: '44px',
+      borderRadius: '50%',
+      border: '1px solid #e4e4e4',
+      background: '#fff',
+      color: '#25326b',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      fontSize: '31px',
       lineHeight: 1,
-
-      cursor:
-        'pointer',
-
-      boxShadow:
-        '0 8px 22px rgba(40,30,80,.14)',
-
+      cursor: 'pointer',
+      boxShadow: '0 8px 20px rgba(40,30,80,.10)',
       transition:
         'transform .2s ease, box-shadow .2s ease',
-
-      zIndex: 10,
-
-      padding:
-        0,
-    },
-
-    leftArrow: {
-      left:
-        isMobile
-          ? '-5px'
-          : '0',
-    },
-
-    rightArrow: {
-      right:
-        isMobile
-          ? '-5px'
-          : '0',
+      flexShrink: 0,
     },
 
     dots: {
-      display:
-        'flex',
-
-      justifyContent:
-        'center',
-
-      alignItems:
-        'center',
-
-      gap:
-        isMobile
-          ? '8px'
-          : '8px',
-
-      marginTop:
-        isMobile
-          ? '20px'
-          : '24px',
-
-      marginBottom:
-        isMobile
-          ? '10px'
-          : '0',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      gap: '8px',
+      marginTop: '24px',
     },
   }
 
   return (
-    <section
-      id="galeri"
-      className="section galeri"
-    >
+    <section id="galeri" className="section galeri">
       <Reveal className="section__head">
-        <p className="eyebrow eyebrow--dark">
-          Galeri
-        </p>
+        <p className="eyebrow eyebrow--dark">Galeri</p>
 
         <h2 className="keunggulan__title">
           Momen ceria di{' '}
@@ -1587,276 +1116,149 @@ function Galeri() {
         <p
           style={{
             maxWidth: '650px',
-            margin:
-              '12px auto 0',
-
-            textAlign:
-              'center',
-
-            color:
-              '#777',
-
-            fontSize:
-              isMobile
-                ? '14px'
-                : '15px',
-
-            lineHeight:
-              1.7,
-
-            padding:
-              isMobile
-                ? '0 12px'
-                : '0',
+            margin: '12px auto 0',
+            textAlign: 'center',
+            color: '#777',
+            fontSize: '15px',
+            lineHeight: 1.7,
           }}
         >
-          Lihat keseruan anak-anak
-          belajar, bermain, dan
-          berkarya bersama Rainbow Kids.
+          Lihat keseruan anak-anak belajar, bermain,
+          dan berkarya bersama Rainbow Kids.
         </p>
       </Reveal>
 
-      {/* =====================================================
-          CAROUSEL
-      ====================================================== */}
-
-      <div
-        style={
-          carouselStyles.wrapper
-        }
-      >
-        {/* TOMBOL KIRI */}
-
+      <div style={carouselStyles.wrapper}>
         <button
           type="button"
-          style={{
-            ...carouselStyles.arrow,
-            ...carouselStyles.leftArrow,
-          }}
-          onClick={() =>
-            go(-1)
-          }
+          style={carouselStyles.arrow}
+          onClick={() => go(-1)}
           aria-label="Foto sebelumnya"
           onMouseEnter={(e) => {
-            e.currentTarget.style.transform =
-              'translateY(-50%) scale(1.08)'
-
+            e.currentTarget.style.transform = 'scale(1.08)'
             e.currentTarget.style.boxShadow =
-              '0 12px 25px rgba(40,30,80,.20)'
+              '0 12px 25px rgba(40,30,80,.16)'
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.transform =
-              'translateY(-50%) scale(1)'
-
+            e.currentTarget.style.transform = 'scale(1)'
             e.currentTarget.style.boxShadow =
-              '0 8px 22px rgba(40,30,80,.14)'
+              '0 8px 20px rgba(40,30,80,.10)'
           }}
         >
           ‹
         </button>
 
-
-        {/* VIEWPORT */}
-
-        <div
-          style={
-            carouselStyles.viewport
-          }
-        >
-          <div
-            style={
-              carouselStyles.track
-            }
-          >
-            {galeri.map(
-              (g, i) => (
+        <div style={carouselStyles.viewport}>
+          <div style={carouselStyles.track}>
+            {galeri.map((g, i) => (
+              <div
+                key={`${g.label}-${i}`}
+                style={carouselStyles.slide}
+              >
                 <div
-                  key={`${g.label}-${i}`}
-                  style={
-                    carouselStyles.slide
-                  }
+                  style={carouselStyles.item}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform =
+                      'translateY(-6px) scale(1.015)'
+                    e.currentTarget.style.boxShadow =
+                      '0 20px 40px rgba(40, 30, 80, 0.22)'
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform =
+                      'translateY(0) scale(1)'
+                    e.currentTarget.style.boxShadow =
+                      '0 12px 30px rgba(40, 30, 80, 0.10)'
+                  }}
                 >
-                  <div
-                    style={
-                      carouselStyles.item
-                    }
-                  >
-                    {/* FOTO */}
+                  <img
+                    src={g.src}
+                    alt={g.label}
+                    loading="lazy"
+                    style={carouselStyles.img}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform =
+                        'scale(1.08)'
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform =
+                        'scale(1)'
+                    }}
+                  />
 
-                    <div
-                      style={
-                        carouselStyles.imageBox
-                      }
-                    >
-                      <img
-                        src={g.src}
-                        alt={g.label}
-                        loading="lazy"
-                        style={
-                          carouselStyles.img
-                        }
+                  <div style={carouselStyles.overlay} />
 
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.transform =
-                            'scale(1.035)'
-                        }}
-
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.transform =
-                            'scale(1)'
-                        }}
-                      />
-                    </div>
-
-                    {/* CAPTION DI LUAR FOTO */}
-
-                    <div
-                      style={
-                        carouselStyles.caption
-                      }
-                    >
-                      {g.label}
-                    </div>
-                  </div>
+                  <span style={carouselStyles.caption}>
+                    {g.label}
+                  </span>
                 </div>
-              )
-            )}
+              </div>
+            ))}
           </div>
         </div>
 
-
-        {/* TOMBOL KANAN */}
-
         <button
           type="button"
-          style={{
-            ...carouselStyles.arrow,
-            ...carouselStyles.rightArrow,
-          }}
-          onClick={() =>
-            go(1)
-          }
+          style={carouselStyles.arrow}
+          onClick={() => go(1)}
           aria-label="Foto berikutnya"
           onMouseEnter={(e) => {
-            e.currentTarget.style.transform =
-              'translateY(-50%) scale(1.08)'
-
+            e.currentTarget.style.transform = 'scale(1.08)'
             e.currentTarget.style.boxShadow =
-              '0 12px 25px rgba(40,30,80,.20)'
+              '0 12px 25px rgba(40,30,80,.16)'
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.transform =
-              'translateY(-50%) scale(1)'
-
+            e.currentTarget.style.transform = 'scale(1)'
             e.currentTarget.style.boxShadow =
-              '0 8px 22px rgba(40,30,80,.14)'
+              '0 8px 20px rgba(40,30,80,.10)'
           }}
         >
           ›
         </button>
       </div>
 
-
-      {/* =====================================================
-          DOT INDICATOR
-      ====================================================== */}
-
-      <div
-        style={
-          carouselStyles.dots
-        }
-      >
-        {Array.from({
-          length:
-            maxIndex + 1,
-        }).map(
-          (_, i) => (
-            <button
-              key={i}
-              type="button"
-              onClick={() =>
-                setIdx(i)
-              }
-              aria-label={
-                `Halaman galeri ${
-                  i + 1
-                }`
-              }
-              style={{
-                width:
-                  i === idx
-                    ? '24px'
-                    : '9px',
-
-                height:
-                  '9px',
-
-                padding:
-                  0,
-
-                border:
-                  0,
-
-                borderRadius:
-                  '999px',
-
-                background:
-                  i === idx
-                    ? '#ff7060'
-                    : '#d2d2d2',
-
-                cursor:
-                  'pointer',
-
-                transition:
-                  'width .25s ease, background .25s ease',
-              }}
-            />
-          )
-        )}
+      <div style={carouselStyles.dots}>
+        {Array.from({ length: maxIndex + 1 }).map((_, i) => (
+          <button
+            key={i}
+            type="button"
+            onClick={() => setIdx(i)}
+            aria-label={`Halaman galeri ${i + 1}`}
+            style={{
+              width: i === idx ? '24px' : '9px',
+              height: '9px',
+              padding: 0,
+              border: 0,
+              borderRadius: '999px',
+              background:
+                i === idx ? '#ff7060' : '#d2d2d2',
+              cursor: 'pointer',
+              transition:
+                'width .25s ease, background .25s ease',
+            }}
+          />
+        ))}
       </div>
     </section>
   )
 }
 
-
-/* =========================================================
-   TESTIMONI
-========================================================= */
-
 function Testimoni() {
-  const [idx, setIdx] =
-    useState(0)
-
-  const total =
-    testimoni.length
-
-  const timerRef =
-    useRef(null)
+  const [idx, setIdx] = useState(0)
+  const total = testimoni.length
+  const timerRef = useRef(null)
 
   function go(dir) {
-    setIdx(
-      (prev) =>
-        (prev + dir + total) %
-        total
-    )
+    setIdx((prev) => (prev + dir + total) % total)
   }
 
   function restartTimer() {
     if (timerRef.current) {
-      clearInterval(
-        timerRef.current
-      )
+      clearInterval(timerRef.current)
     }
 
-    timerRef.current =
-      setInterval(() => {
-        setIdx(
-          (prev) =>
-            (prev + 1) %
-            total
-        )
-      }, 5000)
+    timerRef.current = setInterval(() => {
+      setIdx((prev) => (prev + 1) % total)
+    }, 5000)
   }
 
   useEffect(() => {
@@ -1864,12 +1266,9 @@ function Testimoni() {
 
     return () => {
       if (timerRef.current) {
-        clearInterval(
-          timerRef.current
-        )
+        clearInterval(timerRef.current)
       }
     }
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [total])
 
@@ -1884,38 +1283,28 @@ function Testimoni() {
   }
 
   return (
-    <section
-      id="testimoni"
-      className="testimoni"
-    >
+    <section id="testimoni" className="testimoni">
       <div className="testimoni__inner">
         <Reveal>
-          <h2>
-            Kata Para Orang Tua
-          </h2>
+          <h2>Kata Para Orang Tua</h2>
 
           <p className="testimoni__sub">
-            Anak senang belajar,
-            orang tua pun tenang.
+            Anak senang belajar, orang tua pun tenang.
           </p>
         </Reveal>
 
         <div className="testimoni__carousel">
           <button
             className="testimoni__arrow"
-            onClick={() =>
-              handleManualGo(-1)
-            }
+            onClick={() => handleManualGo(-1)}
             aria-label="Testimoni sebelumnya"
           >
             ‹
           </button>
 
-          <blockquote className="testi-card">
+          <blockquote className="testi-card" key={idx}>
             <p>
-              &ldquo;
-              {testimoni[idx].pesan}
-              &rdquo;
+              &ldquo;{testimoni[idx].pesan}&rdquo;
             </p>
 
             <footer>
@@ -1926,22 +1315,16 @@ function Testimoni() {
               </span>
 
               <span className="testi-card__who">
-                <strong>
-                  {testimoni[idx].nama}
-                </strong>
+                <strong>{testimoni[idx].nama}</strong>
 
-                <span>
-                  {testimoni[idx].anak}
-                </span>
+                <span>{testimoni[idx].anak}</span>
               </span>
             </footer>
           </blockquote>
 
           <button
             className="testimoni__arrow"
-            onClick={() =>
-              handleManualGo(1)
-            }
+            onClick={() => handleManualGo(1)}
             aria-label="Testimoni berikutnya"
           >
             ›
@@ -1949,50 +1332,31 @@ function Testimoni() {
         </div>
 
         <div className="testimoni__dots">
-          {testimoni.map(
-            (t, i) => (
-              <button
-                key={t.nama}
-                className={`testimoni__dot ${
-                  i === idx
-                    ? 'is-active'
-                    : ''
-                }`}
-                onClick={() =>
-                  handleDot(i)
-                }
-                aria-label={
-                  `Testimoni ${t.nama}`
-                }
-              />
-            )
-          )}
+          {testimoni.map((t, i) => (
+            <button
+              key={t.nama}
+              className={`testimoni__dot ${
+                i === idx ? 'is-active' : ''
+              }`}
+              onClick={() => handleDot(i)}
+              aria-label={`Testimoni ${t.nama}`}
+            />
+          ))}
         </div>
       </div>
     </section>
   )
 }
 
-
-/* =========================================================
-   KONTAK
-========================================================= */
-
 function Kontak() {
   return (
-    <section
-      id="kontak"
-      className="kontak"
-    >
+    <section id="kontak" className="kontak">
       <div className="kontak__inner">
-        <h2>
-          Kunjungi Kami
-        </h2>
+        <h2>Kunjungi Kami</h2>
 
         <p className="kontak__sub">
-          Ayah/Bunda bisa datang langsung
-          untuk lihat suasana belajar
-          Rainbow Kids.
+          Ayah/Bunda bisa datang langsung untuk lihat
+          suasana belajar Rainbow Kids.
         </p>
 
         <ul className="kontak__list">
@@ -2000,9 +1364,7 @@ function Kontak() {
             <span className="kontak__icon">
               <PinIcon />
             </span>
-
-            Kav.sidomakmur I Rt. 005/03
-            No. 14. Kel. Kaliabang Tengah.
+            Kav.sidomakmur I Rt. 005/03 No. 14. Kel. Kaliabang Tengah. 
             Kec. Bekasi Utara. Kota Bekasi
           </li>
 
@@ -2010,7 +1372,6 @@ function Kontak() {
             <span className="kontak__icon">
               <PhoneIcon />
             </span>
-
             0895-1546-0401
           </li>
 
@@ -2018,9 +1379,7 @@ function Kontak() {
             <span className="kontak__icon">
               <ClockIcon />
             </span>
-
-            Senin–Jumat,
-            07.30–11.00
+            Senin–Jumat, 07.30–11.00
           </li>
         </ul>
 
@@ -2038,11 +1397,6 @@ function Kontak() {
   )
 }
 
-
-/* =========================================================
-   FOOTER
-========================================================= */
-
 function Footer() {
   return (
     <footer className="footer">
@@ -2054,56 +1408,34 @@ function Footer() {
           />
 
           <div>
-            <strong>
-              Rainbow Kids
-            </strong>
-
-            <span>
-              Sidomakmur
-            </span>
+            <strong>Rainbow Kids</strong>
+            <span>Sidomakmur</span>
           </div>
         </div>
 
         <p className="footer__copy">
-          © {new Date().getFullYear()}{' '}
-          RAINBOW KIDS
-          SIDOMAKMUR. ALL RIGHTS RESERVED.
+          © {new Date().getFullYear()} Rainbow Kids
+          Sidomakmur. Semua hak dilindungi.
         </p>
       </div>
     </footer>
   )
 }
 
-
-/* =========================================================
-   APP
-========================================================= */
-
 export default function App() {
   return (
     <div className="app">
       <WhatsAppFloat />
-
       <BackToTop />
-
       <TopBar />
-
       <NavBar />
-
       <Hero />
-
       <Tentang />
-
       <Keunggulan />
-
       <Program />
-
       <Galeri />
-
       <Testimoni />
-
       <Kontak />
-
       <Footer />
     </div>
   )
