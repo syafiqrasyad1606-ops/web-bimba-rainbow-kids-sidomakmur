@@ -23,6 +23,11 @@
   --radius-md: 18px;
 
   --shadow-soft: 0 12px 30px rgba(42, 33, 56, 0.1);
+
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-snap: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --shadow-card: 0 10px 24px rgba(42, 33, 56, 0.08);
+  --shadow-card-hover: 0 24px 48px rgba(42, 33, 56, 0.18);
 }
 
 * {
@@ -579,15 +584,20 @@ button {
 .photo-frame {
   border-radius: var(--radius-lg);
   overflow: hidden;
-  box-shadow: var(--shadow-soft);
+  box-shadow: var(--shadow-card);
   position: relative;
+  transition: box-shadow 0.45s var(--ease-smooth);
+}
+
+.photo-frame:hover {
+  box-shadow: var(--shadow-card-hover);
 }
 
 .photo-frame img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.4s ease;
+  transition: transform 0.6s var(--ease-smooth);
 }
 
 .photo-frame:hover img {
@@ -630,27 +640,46 @@ button {
 }
 
 .visi-card {
+  position: relative;
   background: #fff;
   border-radius: var(--radius-md);
   padding: 24px 26px;
-  box-shadow: var(--shadow-soft);
+  box-shadow: var(--shadow-card);
   border-left: 6px solid var(--purple);
+  overflow: hidden;
   transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
+    transform 0.45s var(--ease-smooth),
+    box-shadow 0.45s var(--ease-smooth);
 }
 
 .visi-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 18px 34px rgba(42, 33, 56, 0.14);
+  transform: translateY(-6px) scale(1.015);
+  box-shadow: var(--shadow-card-hover);
 }
 
 .visi-card__tag {
+  position: relative;
   display: inline-block;
   font-family: var(--font-display);
   font-weight: 700;
   color: var(--purple);
   margin-bottom: 8px;
+}
+
+.visi-card__tag::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 28px;
+  height: 3px;
+  border-radius: 3px;
+  background: var(--purple);
+  transition: width 0.4s var(--ease-smooth);
+}
+
+.visi-card:hover .visi-card__tag::after {
+  width: 100%;
 }
 
 .visi-card p {
@@ -743,15 +772,36 @@ button {
   color: #fff;
   border-radius: var(--radius-md);
   padding: 26px 22px;
-  box-shadow: var(--shadow-soft);
+  box-shadow: var(--shadow-card);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   transition:
-    transform 0.28s ease,
-    box-shadow 0.28s ease;
+    transform 0.5s var(--ease-smooth),
+    box-shadow 0.5s var(--ease-smooth),
+    border-color 0.5s var(--ease-smooth);
+}
+
+.keunggulan-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    140px circle at var(--mx, 50%) var(--my, 0%),
+    rgba(255, 255, 255, 0.1),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.keunggulan-card:hover::before {
+  opacity: 1;
 }
 
 .keunggulan-card:hover {
-  transform: translateY(-6px) rotate(-1deg);
-  box-shadow: 0 22px 40px rgba(30, 42, 94, 0.35);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: var(--shadow-card-hover);
+  border-color: rgba(255, 255, 255, 0.16);
 }
 
 .keunggulan-card.is-highlight {
@@ -760,6 +810,7 @@ button {
 }
 
 .keunggulan-card__media {
+  position: relative;
   width: 56px;
   height: 56px;
   border-radius: 16px;
@@ -768,22 +819,32 @@ button {
   align-items: center;
   justify-content: center;
   margin-bottom: 16px;
-  transition: transform 0.3s ease;
+  transition: transform 0.5s var(--ease-snap);
 }
 
 .keunggulan-card__media img {
   width: 30px;
   height: 30px;
   object-fit: contain;
+  transition: transform 0.4s var(--ease-smooth);
 }
 
 .keunggulan-card:hover .keunggulan-card__media {
-  transform: scale(1.12) rotate(6deg);
+  transform: scale(1.14) rotate(-6deg);
+}
+
+.keunggulan-card:hover .keunggulan-card__media img {
+  transform: scale(1.08) rotate(4deg);
 }
 
 .keunggulan-card h3 {
   font-size: 1.05rem;
   margin-bottom: 8px;
+  transition: transform 0.35s var(--ease-smooth);
+}
+
+.keunggulan-card:hover h3 {
+  transform: translateX(2px);
 }
 
 .keunggulan-card p {
@@ -800,6 +861,12 @@ button {
   height: 26px;
   object-fit: contain;
   opacity: 0.45;
+  transition: transform 0.5s var(--ease-snap), opacity 0.4s ease;
+}
+
+.keunggulan-card:hover .keunggulan-card__deco {
+  opacity: 0.8;
+  transform: scale(1.15) rotate(-8deg);
 }
 
 .benefit__head {
@@ -837,16 +904,16 @@ button {
   border-radius: var(--radius-md);
   padding: 24px 18px 28px;
   text-align: center;
-  box-shadow: var(--shadow-soft);
+  box-shadow: var(--shadow-card);
   overflow: hidden;
   transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
+    transform 0.5s var(--ease-snap),
+    box-shadow 0.5s var(--ease-smooth);
 }
 
 .benefit-card:hover {
-  transform: translateY(-5px) scale(1.02);
-  box-shadow: 0 18px 32px rgba(42, 33, 56, 0.15);
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: var(--shadow-card-hover);
 }
 
 .benefit-card__ikon {
@@ -855,6 +922,11 @@ button {
   object-fit: contain;
   display: block;
   margin: 0 auto 12px;
+  transition: transform 0.5s var(--ease-snap);
+}
+
+.benefit-card:hover .benefit-card__ikon {
+  transform: scale(1.18) rotate(-8deg);
 }
 
 .benefit-card h3 {
@@ -876,6 +948,15 @@ button {
   bottom: 12px;
   height: 4px;
   border-radius: 4px;
+  transform: scaleX(0.35);
+  transform-origin: left;
+  opacity: 0.55;
+  transition: transform 0.5s var(--ease-smooth), opacity 0.4s ease;
+}
+
+.benefit-card:hover .benefit-card__bar {
+  transform: scaleX(1);
+  opacity: 1;
 }
 
 .benefit-card--pink {
@@ -982,21 +1063,40 @@ button {
 }
 
 .program-item {
+  position: relative;
   display: flex;
   align-items: flex-start;
   gap: 16px;
   background: #fff;
   border-radius: var(--radius-md);
-  padding: 20px 22px;
-  box-shadow: var(--shadow-soft);
+  padding: 20px 22px 20px 26px;
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
   transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
+    transform 0.45s var(--ease-smooth),
+    box-shadow 0.45s var(--ease-smooth);
+}
+
+.program-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--coral);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.4s var(--ease-smooth);
+}
+
+.program-item:hover::before {
+  transform: scaleY(1);
 }
 
 .program-item:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 18px 34px rgba(42, 33, 56, 0.14);
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: var(--shadow-card-hover);
 }
 
 .program-item__icon {
@@ -1007,6 +1107,11 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform 0.5s var(--ease-snap);
+}
+
+.program-item:hover .program-item__icon {
+  transform: scale(1.1) rotate(-6deg);
 }
 
 .program-item__icon img {
@@ -1277,10 +1382,35 @@ button {
   background: #fff;
   border-radius: var(--radius-md);
   padding: 30px;
-  box-shadow: var(--shadow-soft);
+  box-shadow: var(--shadow-card);
   flex: 1;
   text-align: left;
   min-height: 176px;
+  transition: transform 0.4s var(--ease-smooth), box-shadow 0.4s var(--ease-smooth);
+  animation: testi-fade-in 0.5s var(--ease-smooth) both;
+}
+
+.testi-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+@keyframes testi-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .testi-card {
+    animation: none;
+  }
 }
 
 .testi-card p {
@@ -1308,6 +1438,7 @@ button {
   justify-content: center;
   font-family: var(--font-display);
   font-weight: 700;
+
   flex-shrink: 0;
 }
 
@@ -1422,12 +1553,12 @@ button {
 }
 
 .footer__brand img {
-  width: 40px;
-  height: 40px;
+  width: 64px;
+  height: 64px;
   object-fit: contain;
   background: #fff;
   border-radius: 50%;
-  padding: 4px;
+  padding: 6px;
 }
 
 .footer__brand div {
