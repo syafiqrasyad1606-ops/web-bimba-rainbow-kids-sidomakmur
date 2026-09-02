@@ -143,15 +143,15 @@ const testimoni = [
   },
   {
     nama: 'Bu Dewi',
-    anak: 'Ibu dari Fathan (4 th)',
+    anak: 'Ibu dari Fathan (5 th)',
     pesan:
-      'Suasana belajarnya ceria, Fathan selalu semangat berangkat sekolah tiap pagi. Program Jumatnya jadi favorit kami sekeluarga.',
+      'Suasana belajarnya ceria, Fathan selalu semangat berangkat sekolah tiap pagi.',
   },
   {
     nama: 'Pak Yusuf',
-    anak: 'Ayah dari Naila (6 th)',
+    anak: 'Ayah dari Kayla (6 th)',
     pesan:
-      'Perkembangan motorik dan bahasa Naila terasa banget kemajuannya dalam beberapa bulan. Recommended untuk orang tua di Sidomakmur!',
+      'Perkembangan motorik dan bahasa Kayla terasa banget kemajuannya dalam beberapa bulan. Recommended untuk orang tua yang lagi mencari Bimba untuk anaknya!',
   },
 ]
 
