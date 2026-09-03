@@ -1,22 +1,23 @@
 import { useState, useEffect, useRef } from 'react'
-import logo from './assets/logo.png'
-import balon from './assets/balon.png'
-import bintang1 from './assets/bintang_1.png'
-import bintang2 from './assets/bintang_2.png'
-import fotoBareng from './assets/foto_bareng.jpg'
-import fotoCampuran from './assets/foto_campuran.jpg'
-import iconGroup from './assets/icon_group.png'
-import iconBintang from './assets/icon_bintang.png'
-import iconUang from './assets/icon_uang.png'
-import iconQuran from './assets/icon_quran.png'
-import iconHeart from './assets/icon_heart.png'
-import fotoKidsRainbow from './assets/foto_kids_rainbow.jpg'
-import fotoBelajar from './assets/foto_belajar.jpg'
-import fotowarnain1 from './assets/gambarbareng.jpeg'
-import fotowarnain2 from './assets/mewarnai.jpeg'
-import fotowarnain3 from './assets/gambar.jpeg'
-import fotowarnain4 from './assets/warnai.jpeg'
-import fotosekolah from './assets/sekolah.jpeg'
+import { Link } from 'react-router-dom'
+import logo from '../assets/logo.png'
+import balon from '../assets/balon.png'
+import bintang1 from '../assets/bintang_1.png'
+import bintang2 from '../assets/bintang_2.png'
+import fotoBareng from '../assets/foto_bareng.jpg'
+import fotoCampuran from '../assets/foto_campuran.jpg'
+import iconGroup from '../assets/icon_group.png'
+import iconBintang from '../assets/icon_bintang.png'
+import iconUang from '../assets/icon_uang.png'
+import iconQuran from '../assets/icon_quran.png'
+import iconHeart from '../assets/icon_heart.png'
+import fotoKidsRainbow from '../assets/foto_kids_rainbow.jpg'
+import fotoBelajar from '../assets/foto_belajar.jpg'
+import fotowarnain1 from '../assets/gambarbareng.jpeg'
+import fotowarnain2 from '../assets/mewarnai.jpeg'
+import fotowarnain3 from '../assets/gambar.jpeg'
+import fotowarnain4 from '../assets/warnai.jpeg'
+import fotosekolah from '../assets/sekolah.jpeg'
 
 const keunggulan = [
   {
@@ -612,6 +613,14 @@ function NavBar() {
               {label}
             </a>
           ))}
+
+          <Link
+            to="/login"
+            className="nav__loginlink"
+            onClick={() => setOpen(false)}
+          >
+            Masuk
+          </Link>
         </nav>
 
         <button
@@ -1422,7 +1431,7 @@ function Footer() {
   )
 }
 
-export default function App() {
+export default function Home() {
   return (
     <div className="app">
       <WhatsAppFloat />
