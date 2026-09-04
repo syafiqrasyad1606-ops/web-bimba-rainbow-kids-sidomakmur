@@ -1,8 +1,8 @@
-import { useGuruList } from '../../hooks/useGuruList'
 import { useState } from 'react'
 import DashboardLayout from './DashboardLayout'
 import { usePengumuman } from '../../hooks/usePengumuman'
 import { useKalenderLibur } from '../../hooks/useKalenderLibur'
+import { useGuruList } from '../../hooks/useGuruList'
 
 const NAV_ITEMS = [
   { key: 'ringkasan', label: 'Ringkasan' },
@@ -228,40 +228,42 @@ function KalenderLiburAdmin() {
   )
 }
 
-'function DataGuru() { const { items, loading } = useGuruList() return ( <section> <h2 className="dash-section-title">Data Guru</h2> {loading && <p className="dash-note">Memuat data guru...</p>} <div className="table-card"> <table> <thead> <tr> <th>Nama</th> <th>Peran</th> </tr> </thead> <tbody> {!loading && items.length === 0 && ( <tr> <td colSpan={2} className="dash-empty"> Belum ada akun guru terdaftar. </td> </tr> )} {items.map((g) => ( <tr key={g.id}> <td>{g.nama || '-'}</td> <td> <span className="status-pill">Guru</span> </td> </tr> ))} </tbody> </table> </div> </section> ) }'
+function DataGuru() {
+  const { items, loading } = useGuruList()
 
   return (
     <section>
       <h2 className="dash-section-title">Data Guru</h2>
+
+      {loading && <p className="dash-note">Memuat data guru...</p>}
 
       <div className="table-card">
         <table>
           <thead>
             <tr>
               <th>Nama</th>
-              <th>Kelas</th>
-              <th>Status</th>
+              <th>Peran</th>
             </tr>
           </thead>
-
           <tbody>
-            {guru.map((g) => (
-              <tr key={g.nama}>
-                <td>{g.nama}</td>
-                <td>{g.kelas}</td>
+            {!loading && items.length === 0 && (
+              <tr>
+                <td colSpan={2} className="dash-empty">
+                  Belum ada akun guru terdaftar.
+                </td>
+              </tr>
+            )}
+            {items.map((g) => (
+              <tr key={g.id}>
+                <td>{g.nama || '-'}</td>
                 <td>
-                  <span className="status-pill">{g.status}</span>
+                  <span className="status-pill">Guru</span>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-
-      <p className="dash-note">
-        Data masih contoh statis. Hubungkan ke koleksi Firestore untuk data guru
-        sesungguhnya.
-      </p>
     </section>
   )
 }
