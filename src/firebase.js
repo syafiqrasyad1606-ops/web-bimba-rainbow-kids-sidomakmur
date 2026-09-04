@@ -6,12 +6,18 @@ import { getFirestore } from 'firebase/firestore'
 // GANTI dengan config asli project Firebase lo:
 // Firebase Console > Project Settings > General > Your apps > SDK setup
 const firebaseConfig = {
-  apiKey: 'GANTI_DENGAN_API_KEY',
-  authDomain: 'GANTI.firebaseapp.com',
-  projectId: 'GANTI_PROJECT_ID',
-  storageBucket: 'GANTI.appspot.com',
-  messagingSenderId: 'GANTI',
-  appId: 'GANTI',
+apiKey: "AIzaSyADVOVeNotcpNydaRPwRP8fgSoqMZwyAL8",
+
+  authDomain: "bimba-rainbow-kids-sidomakmur.firebaseapp.com",
+
+  projectId: "bimba-rainbow-kids-sidomakmur",
+
+  storageBucket: "bimba-rainbow-kids-sidomakmur.firebasestorage.app",
+
+  messagingSenderId: "528193321608",
+
+  appId: "1:528193321608:web:0456604f0b0fca8ce0fd3d",
+
 }
 
 export const app = initializeApp(firebaseConfig)
