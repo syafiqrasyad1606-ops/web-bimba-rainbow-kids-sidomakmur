@@ -1,4 +1,4 @@
-js import { useGuruList } from '../../hooks/useGuruList'
+import { useGuruList } from '../../hooks/useGuruList'
 import { useState } from 'react'
 import DashboardLayout from './DashboardLayout'
 import { usePengumuman } from '../../hooks/usePengumuman'
@@ -228,7 +228,7 @@ function KalenderLiburAdmin() {
   )
 }
 
-js function DataGuru() { const { items, loading } = useGuruList() return ( <section> <h2 className="dash-section-title">Data Guru</h2> {loading && <p className="dash-note">Memuat data guru...</p>} <div className="table-card"> <table> <thead> <tr> <th>Nama</th> <th>Peran</th> </tr> </thead> <tbody> {!loading && items.length === 0 && ( <tr> <td colSpan={2} className="dash-empty"> Belum ada akun guru terdaftar. </td> </tr> )} {items.map((g) => ( <tr key={g.id}> <td>{g.nama || '-'}</td> <td> <span className="status-pill">Guru</span> </td> </tr> ))} </tbody> </table> </div> </section> ) }
+function DataGuru() { const { items, loading } = useGuruList() return ( <section> <h2 className="dash-section-title">Data Guru</h2> {loading && <p className="dash-note">Memuat data guru...</p>} <div className="table-card"> <table> <thead> <tr> <th>Nama</th> <th>Peran</th> </tr> </thead> <tbody> {!loading && items.length === 0 && ( <tr> <td colSpan={2} className="dash-empty"> Belum ada akun guru terdaftar. </td> </tr> )} {items.map((g) => ( <tr key={g.id}> <td>{g.nama || '-'}</td> <td> <span className="status-pill">Guru</span> </td> </tr> ))} </tbody> </table> </div> </section> ) }
 
   return (
     <section>
