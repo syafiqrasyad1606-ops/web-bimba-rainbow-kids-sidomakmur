@@ -34,9 +34,8 @@ export default function Login() {
     setSubmitting(true)
 
     try {
-      await login(email, password)
-      navigate(from, { replace: true })
-    } catch (err) {
+  await login(email, password)
+} catch (err) {
       console.error(err)
       setError('Email atau kata sandi salah. Coba lagi ya.')
     } finally {
