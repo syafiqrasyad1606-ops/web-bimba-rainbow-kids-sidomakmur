@@ -1,10 +1,9 @@
-// src/firebase.js
+
 import { initializeApp } from 'firebase/app'
 import { getAuth } from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore'
 
-// GANTI dengan config asli project Firebase lo:
-// Firebase Console > Project Settings > General > Your apps > SDK setup
+
 const firebaseConfig = {
 apiKey: "AIzaSyADVOVeNotcpNydaRPwRP8fgSoqMZwyAL8",
 
