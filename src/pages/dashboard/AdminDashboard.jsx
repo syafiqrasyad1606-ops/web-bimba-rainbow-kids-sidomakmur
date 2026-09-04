@@ -3,6 +3,8 @@ import DashboardLayout from './DashboardLayout'
 import { usePengumuman } from '../../hooks/usePengumuman'
 import { useKalenderLibur } from '../../hooks/useKalenderLibur'
 import { useGuruList } from '../../hooks/useGuruList'
+import { useSiswaList } from '../../hooks/useSiswaList'
+import { useKelasList } from '../../hooks/useKelasList' 
 
 const NAV_ITEMS = [
   { key: 'ringkasan', label: 'Ringkasan' },
@@ -28,37 +30,7 @@ export default function AdminDashboard() {
   )
 }
 
-function Ringkasan() {
-  // Angka di bawah ini contoh statis — sambungkan ke Firestore
-  // (mis. hitung dokumen di koleksi 'siswa', 'guru', dst.) kalau
-  // datanya sudah ada.
-  const stats = [
-    { label: 'Total Siswa', value: '48' },
-    { label: 'Total Guru', value: '6' },
-    { label: 'Pengumuman Aktif', value: '—' },
-    { label: 'Kelas Berjalan', value: '3' },
-  ]
-
-  return (
-    <section>
-      <h2 className="dash-section-title">Ringkasan</h2>
-
-      <div className="stat-grid">
-        {stats.map((s) => (
-          <div className="stat-card" key={s.label}>
-            <span className="stat-card__value">{s.value}</span>
-            <span className="stat-card__label">{s.label}</span>
-          </div>
-        ))}
-      </div>
-
-      <p className="dash-note">
-        Angka di atas masih contoh. Sambungkan ke koleksi Firestore terkait
-        (siswa, guru, kelas) untuk data real-time.
-      </p>
-    </section>
-  )
-}
+ function Ringkasan() { const { items: siswaItems, loading: siswaLoading } = useSiswaList() const { items: guruItems, loading: guruLoading } = useGuruList() const { items: pengumumanItems, loading: pengumumanLoading } = usePengumuman() const { items: kelasItems, loading: kelasLoading } = useKelasList() const stats = [ { label: 'Total Siswa', value: siswaLoading ? '...' : String(siswaItems.length) }, { label: 'Total Guru', value: guruLoading ? '...' : String(guruItems.length) }, { label: 'Pengumuman Aktif', value: pengumumanLoading ? '...' : String(pengumumanItems.length) }, { label: 'Kelas Berjalan', value: kelasLoading ? '...' : String(kelasItems.length) }, ] return ( <section> <h2 className="dash-section-title">Ringkasan</h2> <div className="stat-grid"> {stats.map((s) => ( <div className="stat-card" key={s.label}> <span className="stat-card__value">{s.value}</span> <span className="stat-card__label">{s.label}</span> </div> ))} </div> </section> ) }
 
 function PengumumanAdmin() {
   const { items, loading, tambah, hapus } = usePengumuman()
