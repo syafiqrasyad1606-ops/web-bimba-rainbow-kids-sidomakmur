@@ -4,7 +4,7 @@ import { usePengumuman } from '../../hooks/usePengumuman'
 import { useKalenderLibur } from '../../hooks/useKalenderLibur'
 import { useGuruList } from '../../hooks/useGuruList'
 import { useSiswaList } from '../../hooks/useSiswaList'
-import { useKelasList } from '../../hooks/useKelasList' 
+import { useKelasList } from '../../hooks/useKelasList'
 
 const NAV_ITEMS = [
   { key: 'ringkasan', label: 'Ringkasan' },
@@ -30,7 +30,34 @@ export default function AdminDashboard() {
   )
 }
 
- function Ringkasan() { const { items: siswaItems, loading: siswaLoading } = useSiswaList() const { items: guruItems, loading: guruLoading } = useGuruList() const { items: pengumumanItems, loading: pengumumanLoading } = usePengumuman() const { items: kelasItems, loading: kelasLoading } = useKelasList() const stats = [ { label: 'Total Siswa', value: siswaLoading ? '...' : String(siswaItems.length) }, { label: 'Total Guru', value: guruLoading ? '...' : String(guruItems.length) }, { label: 'Pengumuman Aktif', value: pengumumanLoading ? '...' : String(pengumumanItems.length) }, { label: 'Kelas Berjalan', value: kelasLoading ? '...' : String(kelasItems.length) }, ] return ( <section> <h2 className="dash-section-title">Ringkasan</h2> <div className="stat-grid"> {stats.map((s) => ( <div className="stat-card" key={s.label}> <span className="stat-card__value">{s.value}</span> <span className="stat-card__label">{s.label}</span> </div> ))} </div> </section> ) }
+function Ringkasan() {
+  const { items: siswaItems, loading: siswaLoading } = useSiswaList()
+  const { items: guruItems, loading: guruLoading } = useGuruList()
+  const { items: pengumumanItems, loading: pengumumanLoading } = usePengumuman()
+  const { items: kelasItems, loading: kelasLoading } = useKelasList()
+
+  const stats = [
+    { label: 'Total Siswa', value: siswaLoading ? '...' : String(siswaItems.length) },
+    { label: 'Total Guru', value: guruLoading ? '...' : String(guruItems.length) },
+    { label: 'Pengumuman Aktif', value: pengumumanLoading ? '...' : String(pengumumanItems.length) },
+    { label: 'Kelas Berjalan', value: kelasLoading ? '...' : String(kelasItems.length) },
+  ]
+
+  return (
+    <section>
+      <h2 className="dash-section-title">Ringkasan</h2>
+
+      <div className="stat-grid">
+        {stats.map((s) => (
+          <div className="stat-card" key={s.label}>
+            <span className="stat-card__value">{s.value}</span>
+            <span className="stat-card__label">{s.label}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+  )
+}
 
 function PengumumanAdmin() {
   const { items, loading, tambah, hapus } = usePengumuman()
