@@ -1,5 +1,14 @@
 import { useEffect, useState } from 'react'
-import { collection, onSnapshot } from 'firebase/firestore'
+import {
+  collection,
+  addDoc,
+  updateDoc,
+  deleteDoc,
+  doc,
+  onSnapshot,
+  orderBy,
+  query,
+} from 'firebase/firestore'
 import { db } from '../firebase'
 
 export function useSiswaList() {
@@ -7,8 +16,9 @@ export function useSiswaList() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    const q = query(collection(db, 'siswa'), orderBy('nama'))
     const unsub = onSnapshot(
-      collection(db, 'siswa'),
+      q,
       (snap) => {
         setItems(snap.docs.map((d) => ({ id: d.id, ...d.data() })))
         setLoading(false)
@@ -21,5 +31,17 @@ export function useSiswaList() {
     return () => unsub()
   }, [])
 
-  return { items, loading }
+  async function tambah(nama, kelas) {
+    await addDoc(collection(db, 'siswa'), { nama, kelas })
+  }
+
+  async function edit(id, nama, kelas) {
+    await updateDoc(doc(db, 'siswa', id), { nama, kelas })
+  }
+
+  async function hapus(id) {
+    await deleteDoc(doc(db, 'siswa', id))
+  }
+
+  return { items, loading, tambah, edit, hapus }
 }

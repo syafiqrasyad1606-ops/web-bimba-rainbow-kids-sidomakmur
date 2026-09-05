@@ -11,8 +11,8 @@ const NAV_ITEMS = [
   { key: 'pengumuman', label: 'Pengumuman' },
   { key: 'kalender', label: 'Kalender Libur' },
   { key: 'guru', label: 'Data Guru' },
+  { key: 'siswa', label: 'Data Siswa' },
   { key: 'jadwal', label: 'Jadwal' },
-  { key: 'galeri', label: 'Galeri' },
 ]
 
 export default function AdminDashboard() {
@@ -24,8 +24,8 @@ export default function AdminDashboard() {
       {tab === 'pengumuman' && <PengumumanAdmin />}
       {tab === 'kalender' && <KalenderLiburAdmin />}
       {tab === 'guru' && <DataGuru />}
+      {tab === 'siswa' && <DataSiswa />}
       {tab === 'jadwal' && <Jadwal />}
-      {tab === 'galeri' && <GaleriPlaceholder />}
     </DashboardLayout>
   )
 }
@@ -267,6 +267,159 @@ function DataGuru() {
   )
 }
 
+function DataSiswa() {
+  const { items, loading, tambah, edit, hapus } = useSiswaList()
+  const [nama, setNama] = useState('')
+  const [kelas, setKelas] = useState('')
+  const [submitting, setSubmitting] = useState(false)
+  const [editingId, setEditingId] = useState(null)
+  const [editNama, setEditNama] = useState('')
+  const [editKelas, setEditKelas] = useState('')
+  const [savingEdit, setSavingEdit] = useState(false)
+
+  async function handleSubmit(e) {
+    e.preventDefault()
+    if (!nama.trim() || !kelas.trim()) return
+
+    setSubmitting(true)
+    try {
+      await tambah(nama.trim(), kelas.trim())
+      setNama('')
+      setKelas('')
+    } catch (err) {
+      console.error('Gagal menambah siswa:', err)
+    } finally {
+      setSubmitting(false)
+    }
+  }
+
+  function mulaiEdit(item) {
+    setEditingId(item.id)
+    setEditNama(item.nama || '')
+    setEditKelas(item.kelas || '')
+  }
+
+  function batalEdit() {
+    setEditingId(null)
+    setEditNama('')
+    setEditKelas('')
+  }
+
+  async function simpanEdit(id) {
+    if (!editNama.trim() || !editKelas.trim()) return
+
+    setSavingEdit(true)
+    try {
+      await edit(id, editNama.trim(), editKelas.trim())
+      batalEdit()
+    } catch (err) {
+      console.error('Gagal mengubah data siswa:', err)
+    } finally {
+      setSavingEdit(false)
+    }
+  }
+
+  return (
+    <section>
+      <h2 className="dash-section-title">Data Siswa</h2>
+
+      <form className="pengumuman-form" onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Nama siswa"
+          value={nama}
+          onChange={(e) => setNama(e.target.value)}
+        />
+
+        <input
+          type="text"
+          placeholder="Kelas (mis. Kelompok A)"
+          value={kelas}
+          onChange={(e) => setKelas(e.target.value)}
+        />
+
+        <button type="submit" disabled={submitting}>
+          {submitting ? 'Menyimpan...' : 'Tambah Siswa'}
+        </button>
+      </form>
+
+      {loading && <p className="dash-note">Memuat data siswa...</p>}
+
+      <div className="table-card">
+        <table>
+          <thead>
+            <tr>
+              <th>Nama</th>
+              <th>Kelas</th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {!loading && items.length === 0 && (
+              <tr>
+                <td colSpan={3} className="dash-empty">
+                  Belum ada data siswa.
+                </td>
+              </tr>
+            )}
+
+            {items.map((s) =>
+              editingId === s.id ? (
+                <tr key={s.id}>
+                  <td>
+                    <input
+                      type="text"
+                      value={editNama}
+                      onChange={(e) => setEditNama(e.target.value)}
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      value={editKelas}
+                      onChange={(e) => setEditKelas(e.target.value)}
+                    />
+                  </td>
+                  <td>
+                    <button
+                      type="button"
+                      onClick={() => simpanEdit(s.id)}
+                      disabled={savingEdit}
+                    >
+                      Simpan
+                    </button>
+                    <button type="button" onClick={batalEdit}>
+                      Batal
+                    </button>
+                  </td>
+                </tr>
+              ) : (
+                <tr key={s.id}>
+                  <td>{s.nama}</td>
+                  <td>{s.kelas}</td>
+                  <td>
+                    <button type="button" onClick={() => mulaiEdit(s)}>
+                      Edit
+                    </button>
+                    <button
+                      type="button"
+                      className="table-card__hapus"
+                      onClick={() => hapus(s.id)}
+                    >
+                      Hapus
+                    </button>
+                  </td>
+                </tr>
+              )
+            )}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  )
+}
+
 function Jadwal() {
   const jadwal = [
     { hari: 'Senin', kegiatan: 'Calistung' },
@@ -299,20 +452,6 @@ function Jadwal() {
           </tbody>
         </table>
       </div>
-    </section>
-  )
-}
-
-function GaleriPlaceholder() {
-  return (
-    <section>
-      <h2 className="dash-section-title">Galeri</h2>
-
-      <p className="dash-empty">
-        Bagian ini untuk upload/kelola foto galeri. Sambungkan ke Firebase
-        Storage + Firestore kalau sudah siap — pola CRUD-nya sama seperti
-        tab Pengumuman.
-      </p>
     </section>
   )
 }
