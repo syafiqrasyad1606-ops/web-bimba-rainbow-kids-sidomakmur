@@ -9,18 +9,6 @@ import { auth, db } from '../firebase'
 
 const AuthContext = createContext(null)
 
-/*
-  Struktur Firestore yang dipakai:
-
-  users/{uid}
-    - nama:  string
-    - role:  'admin' | 'guru'
-
-  Dokumen ini dibuat manual (lewat Firebase Console) setiap kali
-  lo menambah akun admin/guru baru, karena role tidak boleh
-  ditentukan dari sisi client demi keamanan.
-*/
-
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null)
   const [profile, setProfile] = useState(null)
@@ -28,9 +16,9 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, async (firebaseUser) => {
-      setUser(firebaseUser)
-
-      if (firebaseUser) {
+  setLoading(true)
+  setUser(firebaseUser)
+  if (firebaseUser) {
         try {
           const snap = await getDoc(doc(db, 'users', firebaseUser.uid))
           setProfile(snap.exists() ? snap.data() : null)

@@ -2,6 +2,9 @@ import { useState } from 'react'
 import DashboardLayout from './DashboardLayout'
 import { usePengumuman } from '../../hooks/usePengumuman'
 import { useKalenderLibur } from '../../hooks/useKalenderLibur'
+import { useGuruList } from '../../hooks/useGuruList'
+import { useSiswaList } from '../../hooks/useSiswaList'
+import { useKelasList } from '../../hooks/useKelasList'
 
 const NAV_ITEMS = [
   { key: 'ringkasan', label: 'Ringkasan' },
@@ -28,14 +31,16 @@ export default function AdminDashboard() {
 }
 
 function Ringkasan() {
-  // Angka di bawah ini contoh statis — sambungkan ke Firestore
-  // (mis. hitung dokumen di koleksi 'siswa', 'guru', dst.) kalau
-  // datanya sudah ada.
+  const { items: siswaItems, loading: siswaLoading } = useSiswaList()
+  const { items: guruItems, loading: guruLoading } = useGuruList()
+  const { items: pengumumanItems, loading: pengumumanLoading } = usePengumuman()
+  const { items: kelasItems, loading: kelasLoading } = useKelasList()
+
   const stats = [
-    { label: 'Total Siswa', value: '48' },
-    { label: 'Total Guru', value: '6' },
-    { label: 'Pengumuman Aktif', value: '—' },
-    { label: 'Kelas Berjalan', value: '3' },
+    { label: 'Total Siswa', value: siswaLoading ? '...' : String(siswaItems.length) },
+    { label: 'Total Guru', value: guruLoading ? '...' : String(guruItems.length) },
+    { label: 'Pengumuman Aktif', value: pengumumanLoading ? '...' : String(pengumumanItems.length) },
+    { label: 'Kelas Berjalan', value: kelasLoading ? '...' : String(kelasItems.length) },
   ]
 
   return (
@@ -50,11 +55,6 @@ function Ringkasan() {
           </div>
         ))}
       </div>
-
-      <p className="dash-note">
-        Angka di atas masih contoh. Sambungkan ke koleksi Firestore terkait
-        (siswa, guru, kelas) untuk data real-time.
-      </p>
     </section>
   )
 }
@@ -228,45 +228,41 @@ function KalenderLiburAdmin() {
 }
 
 function DataGuru() {
-  // Placeholder — ganti dengan data dari koleksi Firestore 'users'
-  // yang role-nya 'guru'.
-  const guru = [
-    { nama: 'Bu Siti', kelas: 'Kelompok A', status: 'Aktif' },
-    { nama: 'Bu Nadia', kelas: 'Kelompok B', status: 'Aktif' },
-  ]
+  const { items, loading } = useGuruList()
 
   return (
     <section>
       <h2 className="dash-section-title">Data Guru</h2>
+
+      {loading && <p className="dash-note">Memuat data guru...</p>}
 
       <div className="table-card">
         <table>
           <thead>
             <tr>
               <th>Nama</th>
-              <th>Kelas</th>
-              <th>Status</th>
+              <th>Peran</th>
             </tr>
           </thead>
-
           <tbody>
-            {guru.map((g) => (
-              <tr key={g.nama}>
-                <td>{g.nama}</td>
-                <td>{g.kelas}</td>
+            {!loading && items.length === 0 && (
+              <tr>
+                <td colSpan={2} className="dash-empty">
+                  Belum ada akun guru terdaftar.
+                </td>
+              </tr>
+            )}
+            {items.map((g) => (
+              <tr key={g.id}>
+                <td>{g.nama || '-'}</td>
                 <td>
-                  <span className="status-pill">{g.status}</span>
+                  <span className="status-pill">Guru</span>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-
-      <p className="dash-note">
-        Data masih contoh statis. Hubungkan ke koleksi Firestore untuk data guru
-        sesungguhnya.
-      </p>
     </section>
   )
 }
