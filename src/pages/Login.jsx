@@ -17,7 +17,6 @@ export default function Login() {
 
   const from = location.state?.from?.pathname || '/dashboard'
 
-  // Sudah login? langsung lempar ke dashboard, jangan tampilkan form lagi
   if (!loading && user) {
     return <Navigate to={from} replace />
   }
