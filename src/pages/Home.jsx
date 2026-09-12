@@ -517,15 +517,6 @@ function Program() {
   )
 }
 
-/* =========================================================
-   GALERI CAROUSEL
-   - Desktop: 4 foto
-   - Tablet: 2 foto
-   - Mobile: 1 foto
-   - Tombol prev/next
-   - Dot indikator
-   - Tidak membutuhkan library tambahan
-========================================================= */
 
 function Galeri() {
   const [idx, setIdx] = useState(0)
@@ -843,7 +834,7 @@ function Testimoni() {
         clearInterval(timerRef.current)
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, [total])
 
   function handleManualGo(dir) {
@@ -974,9 +965,6 @@ function Kontak() {
 export default function Home() {
   const location = useLocation()
 
-  // Kalau datang dari halaman lain lewat NavBar (mis. klik "Tentang"
-  // saat sedang di /kalender-libur), scroll ke section yang dituju
-  // setelah Home selesai render.
   useEffect(() => {
     const targetId = location.state?.scrollTo
 
