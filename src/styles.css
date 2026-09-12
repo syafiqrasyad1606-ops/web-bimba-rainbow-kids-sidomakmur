@@ -85,7 +85,6 @@ button {
   font-family: inherit;
 }
 
-/* ---------- EYEBROW ---------- */
 
 .eyebrow {
   font-family: var(--font-body);
@@ -105,7 +104,6 @@ button {
   color: var(--navy);
 }
 
-/* ---------- BUTTON ---------- */
 
 .btn {
   display: inline-flex;
@@ -138,7 +136,6 @@ button {
   box-shadow: 0 10px 24px rgba(255, 111, 91, 0.4);
 }
 
-/* ---------- SCROLL REVEAL ---------- */
 
 .reveal {
   opacity: 0;
@@ -179,7 +176,6 @@ button {
   }
 }
 
-/* ---------- WHATSAPP FLOAT ---------- */
 
 .wa-float {
   position: fixed;
@@ -215,7 +211,6 @@ button {
   }
 }
 
-/* ---------- BACK TO TOP ---------- */
 
 .back-to-top {
   position: fixed;
@@ -252,7 +247,6 @@ button {
   background: var(--navy-soft);
 }
 
-/* ---------- TOP BAR ---------- */
 
 .topbar {
   background: var(--navy);
@@ -285,7 +279,6 @@ button {
   background: rgba(255, 255, 255, 0.25);
 }
 
-/* ---------- NAV ---------- */
 
 .nav {
   position: sticky;
@@ -311,7 +304,6 @@ button {
   flex-shrink: 0;
 }
 
-/* ---------- UKURAN LOGO NAVBAR ---------- */
 
 .nav__logo {
   width: 60px;
@@ -422,7 +414,6 @@ button {
   border-radius: 2px;
 }
 
-/* ---------- HERO ---------- */
 
 .hero {
   position: relative;
@@ -561,7 +552,6 @@ button {
   }
 }
 
-/* ---------- SECTION SHARED ---------- */
 
 .section {
   max-width: 1180px;
@@ -579,7 +569,6 @@ button {
   font-size: clamp(1.7rem, 3.4vw, 2.6rem);
 }
 
-/* ---------- PHOTO FRAME ---------- */
 
 .photo-frame {
   border-radius: var(--radius-lg);
@@ -612,7 +601,6 @@ button {
   aspect-ratio: 4 / 3;
 }
 
-/* ---------- TENTANG ---------- */
 
 .tentang__grid {
   display: grid;
@@ -687,7 +675,6 @@ button {
   line-height: 1.6;
 }
 
-/* ---------- KEUNGGULAN ---------- */
 
 .keunggulan {
   background: var(--cream);
@@ -999,7 +986,6 @@ button {
   background: var(--purple);
 }
 
-/* ---------- PROGRAM ---------- */
 
 .program {
   align-items: start;
@@ -1204,7 +1190,6 @@ button {
   line-height: 1.6;
 }
 
-/* ---------- GALERI ---------- */
 
 .galeri {
   background: var(--cream-soft);
@@ -1257,7 +1242,6 @@ button {
   text-align: left;
 }
 
-/* ---------- GALERI CAROUSEL ---------- */
 
 .galeri__carousel {
   display: flex;
@@ -1323,7 +1307,6 @@ button {
   transform: scale(1.2);
 }
 
-/* ---------- TESTIMONI ---------- */
 
 .testimoni {
   background: var(--cream);
@@ -1481,8 +1464,6 @@ button {
   transform: scale(1.2);
 }
 
-/* ---------- KONTAK ---------- */
-
 .kontak {
   background: var(--navy);
   color: #fff;
@@ -1528,7 +1509,6 @@ button {
   box-shadow: 0 10px 24px rgba(37, 211, 102, 0.4);
 }
 
-/* ---------- FOOTER ---------- */
 
 .footer {
   background: var(--navy-soft);
@@ -1578,7 +1558,6 @@ button {
   font-size: 0.78rem;
 }
 
-/* ---------- RESPONSIVE ---------- */
 
 @media (max-width: 1024px) {
   .keunggulan__grid {
@@ -1710,7 +1689,6 @@ button {
     font-size: 0.74rem;
   }
 
-  /* Logo tetap besar tapi sedikit disesuaikan di HP */
   .nav__logo {
     width: 56px;
     height: 56px;
