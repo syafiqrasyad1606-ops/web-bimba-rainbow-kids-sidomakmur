@@ -11,7 +11,6 @@ import {
 } from 'firebase/firestore'
 import { db } from '../firebase'
 
-// Koleksi Firestore: pengumuman/{id} -> { judul, isi, createdAt }
 export function usePengumuman() {
   const [items, setItems] = useState([])
   const [loading, setLoading] = useState(true)
