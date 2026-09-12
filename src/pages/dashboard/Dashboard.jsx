@@ -14,7 +14,6 @@ export default function Dashboard() {
     return <GuruDashboard />
   }
 
-  // Fallback: role tidak dikenali (dokumen users/{uid} belum diisi role)
   return (
     <DashboardLayout navItems={[]} activeKey="" onNavChange={() => {}}>
       <p className="dash-empty">
