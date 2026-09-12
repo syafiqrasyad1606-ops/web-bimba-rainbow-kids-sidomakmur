@@ -25,7 +25,6 @@ export default function NavBar() {
   const navigate = useNavigate()
   const isHome = location.pathname === '/'
 
-  // Scroll-spy hanya relevan di halaman Beranda (yang punya section id).
   useEffect(() => {
     if (!isHome) return
 
@@ -99,9 +98,8 @@ export default function NavBar() {
   function handleSectionClick(e, href) {
     setOpen(false)
 
-    if (isHome) return // biarkan anchor scroll bawaan browser
+    if (isHome) return
 
-    // Dari halaman lain: pindah ke Beranda dulu, baru scroll ke section.
     e.preventDefault()
     navigate('/', { state: { scrollTo: href.slice(1) } })
   }
