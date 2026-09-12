@@ -1,7 +1,3 @@
-/* Tambahan untuk tombol "Masuk" di navbar Home.
-   Import file ini SETELAH styles.css di main.jsx, atau
-   gabungkan isinya ke styles.css kalau lo mau satu file saja. */
-
 .nav__loginlink {
   margin-left: 6px;
   padding: 9px 20px !important;
