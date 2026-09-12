@@ -11,7 +11,7 @@ export default class ErrorBoundary extends Component {
   }
 
   componentDidCatch(error, info) {
-    // Tetap dicatat di console biar kelihatan pas debugging
+
     console.error('Terjadi error yang tidak tertangani:', error, info)
   }
 
