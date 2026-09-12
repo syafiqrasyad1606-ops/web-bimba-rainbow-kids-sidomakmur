@@ -12,7 +12,7 @@ const NAMA_BULAN = [
 ]
 
 function formatTanggal(tanggalStr) {
-  // tanggalStr format: 'YYYY-MM-DD'
+
   const [tahun, bulan, tgl] = tanggalStr.split('-').map(Number)
   return `${tgl} ${NAMA_BULAN[bulan - 1]} ${tahun}`
 }
