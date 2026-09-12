@@ -3,7 +3,6 @@
   --surface-line: rgba(30, 42, 94, 0.1);
 }
 
-/* ---------- LOADING ---------- */
 
 .auth-loading {
   min-height: 100vh;
@@ -30,8 +29,6 @@
     transform: rotate(360deg);
   }
 }
-
-/* ---------- LOGIN ---------- */
 
 .login-page {
   min-height: 100vh;
@@ -256,7 +253,6 @@
   }
 }
 
-/* ---------- DASHBOARD SHELL ---------- */
 
 .dash {
   min-height: 100vh;
@@ -463,8 +459,6 @@
   }
 }
 
-/* ---------- STAT CARDS ---------- */
-
 .stat-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -499,7 +493,6 @@
   }
 }
 
-/* ---------- TABLE CARD ---------- */
 
 .table-card {
   background: #fff;
@@ -579,7 +572,6 @@
   font-weight: 700;
 }
 
-/* ---------- PENGUMUMAN (dashboard) ---------- */
 
 .pengumuman-form,
 .kalender-form {
@@ -675,7 +667,6 @@
   border-left: 4px solid var(--coral);
 }
 
-/* ---------- HALAMAN PUBLIK: INFO & KALENDER ---------- */
 
 .infopage-hero {
   background: linear-gradient(160deg, var(--navy), var(--purple));
@@ -768,7 +759,6 @@
   }
 }
 
-/* ---------- CRASH SCREEN & 404 ---------- */
 
 .crash-screen,
 .notfound-page {
