@@ -11,8 +11,6 @@ import {
 } from 'firebase/firestore'
 import { db } from '../firebase'
 
-// Koleksi Firestore: kalender_libur/{id} -> { tanggal: 'YYYY-MM-DD', keterangan, createdAt }
-// Dibaca publik (tanpa login) oleh halaman /kalender-libur, ditulis admin dari dashboard.
 export function useKalenderLibur() {
   const [items, setItems] = useState([])
   const [loading, setLoading] = useState(true)
