@@ -1005,7 +1005,7 @@
   width: 110px;
   pointer-events: none;
   user-select: none;
-  animation: dashDecoFloat 5s ease-in-out infinite;
+
 }
 
 @media (max-width: 900px) {
