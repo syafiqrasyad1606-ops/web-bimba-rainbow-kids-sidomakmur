@@ -5,6 +5,17 @@ import { useKalenderLibur } from '../../hooks/useKalenderLibur'
 import { useGuruList } from '../../hooks/useGuruList'
 import { useSiswaList } from '../../hooks/useSiswaList'
 import { useKelasList } from '../../hooks/useKelasList'
+import iconSiswa from '../../assets/icons/icon-siswa.png'
+import iconGuru from '../../assets/icons/icon-guru.png'
+import iconPengumuman from '../../assets/icons/icon-pengumuman.png'
+import iconKelas from '../../assets/icons/icon-kelas.png'
+
+const STAT_ICONS = {
+  'Total Siswa': iconSiswa,
+  'Total Guru': iconGuru,
+  'Pengumuman Aktif': iconPengumuman,
+  'Kelas Berjalan': iconKelas,
+}
 
 const NAV_ITEMS = [
   { key: 'ringkasan', label: 'Ringkasan' },
@@ -50,8 +61,11 @@ function Ringkasan() {
       <div className="stat-grid">
         {stats.map((s) => (
           <div className="stat-card" key={s.label}>
-            <span className="stat-card__value">{s.value}</span>
-            <span className="stat-card__label">{s.label}</span>
+            <img src={STAT_ICONS[s.label]} alt="" className="stat-card__icon" />
+            <div className="stat-card__body">
+              <span className="stat-card__value">{s.value}</span>
+              <span className="stat-card__label">{s.label}</span>
+            </div>
           </div>
         ))}
       </div>

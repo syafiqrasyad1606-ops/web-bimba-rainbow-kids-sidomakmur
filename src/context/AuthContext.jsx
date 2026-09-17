@@ -3,6 +3,7 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut,
+  sendPasswordResetEmail,
 } from 'firebase/auth'
 import { doc, getDoc } from 'firebase/firestore'
 import { auth, db } from '../firebase'
@@ -16,9 +17,9 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, async (firebaseUser) => {
-  setLoading(true)
-  setUser(firebaseUser)
-  if (firebaseUser) {
+      setLoading(true)
+      setUser(firebaseUser)
+      if (firebaseUser) {
         try {
           const snap = await getDoc(doc(db, 'users', firebaseUser.uid))
           setProfile(snap.exists() ? snap.data() : null)
@@ -44,7 +45,11 @@ export function AuthProvider({ children }) {
     await signOut(auth)
   }
 
-  const value = { user, profile, loading, login, logout }
+  async function resetPassword(email) {
+    await sendPasswordResetEmail(auth, email)
+  }
+
+  const value = { user, profile, loading, login, logout, resetPassword }
 
   return (
     <AuthContext.Provider value={value}>{children}</AuthContext.Provider>

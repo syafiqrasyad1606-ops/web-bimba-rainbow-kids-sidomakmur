@@ -806,3 +806,227 @@
   cursor: pointer;
 }
 
+
+/* ===== Login: transisi modern + forgot password ===== */
+
+@keyframes loginCardIn {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes loginFormIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes loginGradientShift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes loginShake {
+  10%,
+  90% {
+    transform: translateX(-1px);
+  }
+  20%,
+  80% {
+    transform: translateX(2px);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translateX(-4px);
+  }
+  40%,
+  60% {
+    transform: translateX(4px);
+  }
+}
+
+.login-card {
+  animation: loginCardIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.login-brand {
+  background: linear-gradient(
+    160deg,
+    var(--navy),
+    var(--purple),
+    var(--navy)
+  );
+  background-size: 200% 200%;
+  animation: loginGradientShift 10s ease infinite;
+}
+
+.login-form-anim {
+  animation: loginFormIn 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.login-form-anim .login-field {
+  animation: loginFormIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.login-form-anim .login-field:nth-of-type(1) {
+  animation-delay: 0.05s;
+}
+
+.login-form-anim .login-field:nth-of-type(2) {
+  animation-delay: 0.12s;
+}
+
+.login-submit {
+  transition: transform 0.18s ease, box-shadow 0.25s ease;
+}
+
+.login-submit:hover:not(:disabled) {
+  box-shadow: 0 14px 30px rgba(255, 111, 91, 0.45);
+}
+
+.login-error {
+  animation: loginShake 0.4s ease;
+}
+
+.login-forgot-toggle {
+  align-self: flex-end;
+  margin-top: -8px;
+  border: none;
+  background: none;
+  color: var(--purple);
+  font-weight: 700;
+  font-size: 0.82rem;
+  cursor: pointer;
+  padding: 2px 4px;
+  transition: color 0.2s ease;
+}
+
+.login-forgot-toggle:hover {
+  color: var(--coral);
+  text-decoration: underline;
+}
+
+.login-back-btn {
+  border: none;
+  background: none;
+  color: var(--ink-soft);
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 6px 2px;
+  text-align: left;
+  transition: color 0.2s ease;
+}
+
+.login-back-btn:hover {
+  color: var(--coral);
+}
+
+.login-success {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: #eefaf1;
+  border: 1px solid #cdeed8;
+  border-radius: var(--radius-md);
+  padding: 18px 20px;
+  color: var(--ink);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  animation: loginFormIn 0.4s ease;
+}
+
+.login-success p {
+  margin: 0;
+}
+
+/* ===== Dashboard: icon di stat card + dekorasi pojok ===== */
+
+.stat-card {
+  flex-direction: row;
+  align-items: center;
+  gap: 14px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 30px rgba(30, 42, 94, 0.14);
+}
+
+.stat-card__icon {
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+.stat-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.dash-content {
+  position: relative;
+}
+
+@keyframes dashDecoFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.dash-corner-deco {
+  position: absolute;
+  top: 4px;
+  right: 20px;
+  width: 110px;
+  pointer-events: none;
+  user-select: none;
+  animation: dashDecoFloat 5s ease-in-out infinite;
+}
+
+@media (max-width: 900px) {
+  .dash-corner-deco {
+    width: 80px;
+    top: 0;
+    right: 10px;
+  }
+}
+
+@media (max-width: 640px) {
+  .dash-corner-deco {
+    display: none;
+  }
+
+  .stat-card {
+    flex-direction: row;
+  }
+
+  .stat-card__icon {
+    width: 42px;
+    height: 42px;
+  }
+}

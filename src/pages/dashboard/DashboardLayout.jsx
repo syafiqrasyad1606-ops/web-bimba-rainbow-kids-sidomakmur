@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import logo from '../../assets/logo.png'
+import duaAnak from '../../assets/deco-dua-anak.png'
 import { useAuth } from '../../context/AuthContext'
 
 export default function DashboardLayout({
@@ -70,6 +71,13 @@ export default function DashboardLayout({
       </header>
 
       <main className="dash-content">
+        <img
+          src={duaAnak}
+          alt=""
+          aria-hidden="true"
+          className="dash-corner-deco"
+        />
+
         <p className="dash-greeting">
           Halo, <strong>{profile?.nama || 'Pengguna'}</strong> 👋
         </p>

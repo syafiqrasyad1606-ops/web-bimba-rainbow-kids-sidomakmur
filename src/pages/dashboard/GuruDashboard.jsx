@@ -2,6 +2,8 @@ import { useState } from 'react'
 import DashboardLayout from './DashboardLayout'
 import { usePengumuman } from '../../hooks/usePengumuman'
 import { useAuth } from '../../context/AuthContext'
+import iconGuru from '../../assets/icons/icon-guru.png'
+import iconKelas from '../../assets/icons/icon-kelas.png'
 
 const NAV_ITEMS = [
   { key: 'ringkasan', label: 'Ringkasan' },
@@ -49,14 +51,22 @@ function Ringkasan() {
       <h2 className="dash-section-title">Ringkasan Hari Ini</h2>
       <div className="stat-grid">
         <div className="stat-card">
-          <span className="stat-card__value">{profile?.kelas || '-'}</span>
-          <span className="stat-card__label">Kelas yang diampu</span>
+          <img src={iconGuru} alt="" className="stat-card__icon" />
+          <div className="stat-card__body">
+            <span className="stat-card__value">{profile?.kelas || '-'}</span>
+            <span className="stat-card__label">Kelas yang diampu</span>
+          </div>
         </div>
         <div className="stat-card">
-          <span className="stat-card__value">
-            {jadwalHariIni ? jadwalHariIni.kegiatan : 'Tidak ada jadwal'}
-          </span>
-          <span className="stat-card__label">Kegiatan Hari Ini ({namaHariIni})</span>
+          <img src={iconKelas} alt="" className="stat-card__icon" />
+          <div className="stat-card__body">
+            <span className="stat-card__value">
+              {jadwalHariIni ? jadwalHariIni.kegiatan : 'Tidak ada jadwal'}
+            </span>
+            <span className="stat-card__label">
+              Kegiatan Hari Ini ({namaHariIni})
+            </span>
+          </div>
         </div>
       </div>
     </section>
