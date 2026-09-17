@@ -988,16 +988,6 @@
   position: relative;
 }
 
-@keyframes dashDecoFloat {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
-}
-
 .dash-corner-deco {
   position: absolute;
   top: 4px;
@@ -1005,7 +995,6 @@
   width: 110px;
   pointer-events: none;
   user-select: none;
-
 }
 
 @media (max-width: 900px) {
